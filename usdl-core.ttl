@@ -50,7 +50,7 @@
 usdl:Service a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "service";
-    rdfs:comment "A service is either fundamental (atomic) or composed out of other entities (see CompositeService). It should be noted that in the context of USDL, composites are only described, if they are defined on the “network-level”, i.e. they are compositions of entities exposed to the network. Thus, any composite implementation of a service that is internal to a provider, however arbitrarily complex it may be, is described as a fundamental service. The same applies to services with complex interaction structures, i.e. the interface exposed by such services spans across multiple interactions, as opposed to a single request/response invocation.";
+    rdfs:comment "A usdl:Service is a "black box" description of a service for the purpose of describing the service in a way that it can serve as an interface between the provider and the consumer. The description contains functional properties of the service, described by the interaction protocol as well as non-functional properties described by qualitative or quantitative values. Any composite implementation of a service that is internal is invisible, however arbitrarily complex an actual service composition may be, it can be described using supplemental service network vocabularies, which are beyond the USDL Core vocabulary.";
     rdfs:subClassOf gr:ProductOrService .
 
 usdl:ServiceOffering a rdfs:Class, owl:Class;

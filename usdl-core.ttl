@@ -4,405 +4,214 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix usdl-core: <http://www.linked-usdl.org/ns/usdl-core#> .
+@prefix usdl: <http://www.linked-usdl.org/ns/usdl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix msm: <http://purl.org/msm/v2#> .
 
-<http://linked-usdl.org/ns/usdl-core> a owl:Ontology;
+<http://linked-usdl.org/ns/usdl> a owl:Ontology;
     dc:title "Linked-USDL Core";
-    dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and relationships characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
-<p>This first draft includes most of the original USDL specification with some useful simplifications. The vocabulary is, however, likely to be reorganised and better modularised as we progress.</p>
+    dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
+<p>This first draft includes most of the original USDL specification with some useful simplifications. </p>
 """;
     dc:modified "2012-09-20"^^xsd:date;
-    vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-core#";
-    vann:preferredNamespacePrefix "usdl-core";
-    foaf:page <http://linked-usdl.org/ns/usdl-core.html>;
+    vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl#";
+    vann:preferredNamespacePrefix "usdl";
+    foaf:page <http://linked-usdl.org/ns/usdl.html>;
     dc:creator
-        <http://linked-usdl.org/ns/usdl-core#cpedrinaci>,
-        <http://linked-usdl.org/ns/usdl-core#tleidig> .
+        <http://linked-usdl.org/ns/usdl#cpedrinaci>,
+        <http://linked-usdl.org/ns/usdl#jcardoso>,
+        <http://linked-usdl.org/ns/usdl#tleidig> .
 
-<http://linked-usdl.org/ns/usdl-core#cpedrinaci> a foaf:Person;
+<http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
     foaf:name "Carlos Pedrinaci";
     foaf:homepage <http://www.cpedrinaci.net> .
 
-<http://linked-usdl.org/ns/usdl-core#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
-    foaf:member <http://linked-usdl.org/ns/usdl-core#cpedrinaci>;
+<http://linked-usdl.org/ns/usdl#jcardoso> a foaf:Person;
+    foaf:name "Carlos Pedrinaci";
+    foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
+
+<http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
     foaf:name "Knowledge Media Institute, The Open University";
     foaf:homepage <http://www.open.ac.uk> .
 
-<http://linked-usdl.org/ns/usdl-core#tleidig> a foaf:Person;
+<http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
     foaf:name "Torsten Leidig";
     foaf:homepage <> .
 
-<http://linked-usdl.org/ns/usdl-core#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
-    foaf:member <http://linked-usdl.org/ns/usdl-core#tleidig>;
+<http://linked-usdl.org/ns/usdl#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#tleidig>;
     foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
     foaf:homepage <http://www.sap.com> .
 
-usdl-core:Service a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:Service a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "service";
     rdfs:comment "A service is either fundamental (atomic) or composed out of other entities (see CompositeService). It should be noted that in the context of USDL, composites are only described, if they are defined on the “network-level”, i.e. they are compositions of entities exposed to the network. Thus, any composite implementation of a service that is internal to a provider, however arbitrarily complex it may be, is described as a fundamental service. The same applies to services with complex interaction structures, i.e. the interface exposed by such services spans across multiple interactions, as opposed to a single request/response invocation.";
     rdfs:subClassOf gr:ProductOrService .
 
-usdl-core:CompositeService a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "CompositeService";
-    rdfs:comment "A  CompositeService is a special type of  Service that aggregates other services, service models. Composite services provide new functionality by combining the benefits of their parts.";
-    rdfs:subClassOf usdl-core:Service .
-
-usdl-core:ServiceOffering a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:ServiceOffering a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "service offering";
     rdfs:comment "A service offering is an offering made by a gr:BusinessEntity of one or more services to the public or specific customers. It  usually gives defines a price and terms and conditions including service level agreements";
     rdfs:subClassOf gr:Offering .
 
-usdl-core:Parameter a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:Parameter a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "parameter";
     rdfs:comment "Parameter is used to capture conceptual input to and output of interactions. Parameters, on the one hand, may be something very vague, like an idea. On the other hand, they can be something specific, such as the architecture blueprint of a building." .
 
-usdl-core:Interaction a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:Interaction a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "interaction";
     rdfs:comment "An Interaction represents actual communication between service consumer and service. On a technical level this could translate into calling a Web Service operation. On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider).<br> Interactions are the lowest-level building blocks of the interaction protocol and expose an atomic point of communication, which when enacted may lead to individual actions being performed. At least one agent partaking in the service's delivery is involved in the enactment of an interaction. This means a communication channel has to be provided and communication with the consumer has to be performed. Note: an interaction does not necessarily need to result in a service action (operation) to be performed. For example, a series of interactions might just collect input data from the consumer before one interaction finally triggers the action." .
 
-usdl-core:Fault a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "Fault";
-    rdfs:comment """<p>Fault is used to capture information about conceptual faults/exceptions that may occur when a function is performed.</p>
-""";
-    rdfs:subClassOf usdl-core:Parameter .
-
-usdl-core:Resource a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "Resource";
-    rdfs:comment "The class of all Resources" .
-
-usdl-core:ServiceModel a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:ServiceModel a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "service model";
     rdfs:comment "A ServiceModel is used to represent 'classes' of services, i.e. services that share a number of characteristics.  ServiceModel enables the capturing of these characteristics.";
     rdfs:subClassOf
-        usdl-core:Service,
+        usdl:Service,
         gr:ProductOrServiceModel .
 
-usdl-core:Condition a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:Condition a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "Condition";
     rdfs:comment """<p>The class of conditions for a milstone. Preconditions or postcondition</p>
 """ .
 
-usdl-core:InteractionProtocol a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:InteractionProtocol a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "interaction protocol";
     rdfs:comment "The class of interaction protocol descriptions of a service" .
 
-usdl-core:hasProvider a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasProvider a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has provider";
     rdfs:comment "Indicates that a given Agent is the provider of the service";
-    rdfs:domain usdl-core:Service;
-    rdfs:range foaf:Agent .
+    rdfs:domain usdl:Service;
+    rdfs:range gr:BusinessEntity .
 
-usdl-core:hasBusinessOwner a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has business owner";
-    rdfs:comment "Indicates that a given Agent is the business owner of the Service";
-    rdfs:domain usdl-core:Service;
-    rdfs:range foaf:Agent .
-
-usdl-core:hasIntermediary a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has intermediary";
-    rdfs:comment "Indicates that a given Agent is an intermediary of the Service";
-    rdfs:domain usdl-core:Service;
-    rdfs:range foaf:Agent .
-
-usdl-core:hasStakeholder a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "stakeholder";
-    rdfs:comment "Indicates that a given Agent is a stakeholder of the service";
-    rdfs:domain usdl-core:Service;
-    rdfs:range foaf:Agent .
-
-usdl-core:hasConsumer a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasConsumer a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has provider";
     rdfs:comment "Indicates that a given Agent is the consumer of the service";
-    rdfs:domain usdl-core:Service;
-    rdfs:range foaf:Agent .
+    rdfs:domain usdl:Service;
+    rdfs:range gr:BusinessEntity .
 
-usdl-core:hasServiceModel a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "implements";
+usdl:hasServiceModel a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "has service model";
     rdfs:comment "Refers to the service model that specifies properties valid for all services of this model";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:ServiceModel;
+    rdfs:domain usdl:Service;
+    rdfs:range usdl:ServiceModel;
     rdfs:subPropertyOf gr:hasMakeAndModel .
 
-usdl-core:isOptional a rdf:Property, owl:DatatypeProperty;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "is optional";
-    rdfs:comment "Indicates whether a phase is optional or mandatory";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range xsd:boolean .
-
-usdl-core:hasClassification a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasClassification a rdf:Property;
+    rdfs:subPropertyOf dc:subject;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "classification";
     rdfs:comment "Indicates a classification of a service.";
-    rdfs:domain usdl-core:Service;
-    rdfs:range skos:ConceptScheme .
+    rdfs:domain usdl:Service;
+    rdfs:range skos:Concept.
 
-usdl-core:hasPrecondition a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasPrecondition a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has precondition";
     rdfs:comment """<p>Preconditions to be fulfilled to perform the Interaction or InteractionProtocol.</p>
 """;
     rdfs:domain
-        usdl-core:Interaction,
-        usdl-core:InteractionProtocol;
-    rdfs:range usdl-core:Condition .
+        usdl:Interaction,
+        usdl:InteractionProtocol;
+    rdfs:range usdl:Condition .
 
-usdl-core:hasOptionalPart a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has optional part";
-    rdfs:comment "Has optional part captures the part-whole relationship between services, in particular optional ones. This relationship is not transitive";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:hasOptionalPartTransitive .
-
-usdl-core:hasInteraction a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasInteraction a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction";
     rdfs:comment """<p>Interactions that are part of the interaction protocol</p>
 """;
-    rdfs:domain usdl-core:InteractionProtocol;
-    rdfs:range usdl-core:Interaction .
+    rdfs:domain usdl:InteractionProtocol;
+    rdfs:range usdl:Interaction .
 
-usdl-core:canConflictWith a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "can conflict with";
-    rdfs:comment "Operation of the service, service model may conflict with the operation of the referenced service or service model";
-    rdfs:domain usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:dependsOn .
-
-usdl-core:hasInput a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasInput a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has input";
     rdfs:comment """<p>Input parameters required for the interaction</p>
 """;
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Parameter;
-    rdfs:subPropertyOf usdl-core:hasParameter .
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Parameter;
+    rdfs:subPropertyOf usdl:hasParameter .
 
-usdl-core:hasPostcondition a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasPostcondition a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has postcondition";
     rdfs:comment """<p>Postcondition that holds if the phase was performed successfully</p>
 """;
     rdfs:domain
-        usdl-core:Interaction,
-        usdl-core:InteractionProtocol;
-    rdfs:range usdl-core:Condition .
+        usdl:Interaction,
+        usdl:InteractionProtocol;
+    rdfs:range usdl:Condition .
 
-usdl-core:mirrors a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "enhances";
-    rdfs:comment "The service defines the exact same functionality as the referenced, thus constituting an alternative to the referenced object ";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:Service .
-
-usdl-core:hasRole a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasRole a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has role";
     rdfs:comment "Roles of participants which are involved in an interaction";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range org:Role .
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Role . 
 
-usdl-core:hasTechnicalInterface a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasTechnicalInterface a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has technical interface";
     rdfs:comment "The technical interface for a service";
-    rdfs:domain usdl-core:InteractionProtocol;
+    rdfs:domain usdl:InteractionProtocol;
     rdfs:range msm:Service .
 
-usdl-core:affectedResource a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "affected resource";
-    rdfs:comment "Resource that is affected by the function";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Resource .
-
-usdl-core:hasPhase a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasPhase a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has implementation specification";
     rdfs:comment "Phases of an interaction interaction protocl";
-    rdfs:domain usdl-core:InteractionProtocol .
+    rdfs:domain usdl:InteractionProtocol .
 
-usdl-core:initiatorRole a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:initiatorRole a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "initiator role";
     rdfs:comment "Initiator of an interaction";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range org:Role .
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Role . 
 
-usdl-core:exposes a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "exposes";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:Resource .
-
-usdl-core:hasFault a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has fault";
-    rdfs:comment "Faults that can occur during the function execution";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Fault;
-    rdfs:subPropertyOf usdl-core:hasParameter .
-
-usdl-core:hasNature a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "service nature";
-    rdfs:comment "Nature indicates the general nature of the service (human, semi-automated, automated)";
-    rdfs:domain usdl-core:Service .
-
-usdl-core:includes a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:includes a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "includes";
-    rdfs:comment """<p>A ServiceOffering bundles a number of services and products for sales reasons.</p>
+    rdfs:comment """A ServiceOffering bundles a number of services and associates concrete service levels and pricing for for the purpose of selling to customers. The ServiceOffering is the client's view on services on a service marketplace. Services are usually purchased via a specific ServiceOffering.
 """;
-    rdfs:domain
-        usdl-core:ServiceOffering,
-        usdl-core:Service;
-    rdfs:range usdl-core:Service .
+    rdfs:subPropertyOf gr:includes;
+    rdfs:domain usdl:ServiceOffering;
+    rdfs:range usdl:Service .
 
-usdl-core:hasMandatoryPart a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has mandatory part";
-    rdfs:comment "Has mandatory part captures the part-whole relationship between services, in particular mandatory ones. This relationship is not transitive";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:hasMandatoryPartTransitive .
-
-usdl-core:dependsOn a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "depends on";
-    rdfs:comment "depends on";
-    rdfs:domain usdl-core:Service .
-
-usdl-core:requires a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "requires";
-    rdfs:comment " Operation of the service depends on the operation of the referenced service or resource; consequence is that the referenced object has to be made available by the consumer (i.e. has to be ordered separately)";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:dependsOn .
-
-usdl-core:hasInterfaceElement a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has interface element";
-    rdfs:comment """<p>Describes a technical interface element</p>
-""";
-    rdfs:domain usdl-core:Parameter;
-    rdfs:range msm:MessagePart .
-
-usdl-core:hasCompositionType a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has composition type";
-    rdfs:comment "Composition type indicates the general nature of the composition, i.e. how loosely or tightly it is defined ";
-    rdfs:domain usdl-core:CompositeService .
-
-usdl-core:canSubstitute a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "can substitute";
-    rdfs:comment "The service, or service model that are different from those of the referenced service or service model, but it achieves the same goals and therefore constitutes an alternative to the referenced object";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:dependsOn .
-
-usdl-core:hasInteractionProtocol a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasInteractionProtocol a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction protocol";
     rdfs:comment "Interaction protocol of a service: The set of interaction protocols enacted by the service, which have to be followed to ensure successful use of the service's capabilities";
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:InteractionProtocol .
+    rdfs:domain usdl:Service;
+    rdfs:range usdl:InteractionProtocol .
 
-usdl-core:hasParameter a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasParameter a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has parameter";
     rdfs:comment """<p>Input parameters required for the interaction</p>
 """;
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Parameter .
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Parameter .
 
-usdl-core:hasTargetConsumer a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "target consumer";
-    rdfs:domain usdl-core:Service .
-
-usdl-core:hasOutput a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
+usdl:hasOutput a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has output";
     rdfs:comment """<p>Output parameters required for the function</p>
 """;
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Parameter;
-    rdfs:subPropertyOf usdl-core:hasParameter .
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Parameter;
+    rdfs:subPropertyOf usdl:hasParameter .
 
-usdl-core:hasInterfaceOperation a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has interface operation";
-    rdfs:comment """<p>Describes a technical interface element</p>
-""";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range msm:Operation .
-
-usdl-core:enhances a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "enhances";
-    rdfs:comment "The service or service model provides additional benefits on top of the referenced service.";
-    rdfs:domain usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:dependsOn .
-
-usdl-core:hasPart a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has part";
-    rdfs:comment "Has part captures the part-whole relationship between services. This relationship is not transitive";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:hasPartTransitive .
-
-usdl-core:utilizedResource a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "utilized resource";
-    rdfs:comment "Resource that is utilized by the function";
-    rdfs:domain usdl-core:Interaction;
-    rdfs:range usdl-core:Resource .
-
-usdl-core:hasPartTransitive a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has part transitive";
-    rdfs:comment "Has part captures the part-whole relationship between services. This property is transitive and therefore is more convenient for finding all the parts";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service .
-
-usdl-core:hasOptionalPartTransitive a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has optional part transitive";
-    rdfs:comment "Has optional part captures the part-whole relationship between services, in particular optional ones. This property is transitive and therefore is more convenient for finding all the optional parts";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:hasPartTransitive .
-
-usdl-core:hasMandatoryPartTransitive a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has mandatory part transitive";
-    rdfs:comment "Has mandatory part captures the part-whole relationship between services, in particular mandatory ones. This property is transitive and therefore is more convenient for finding all the mandatory parts";
-    rdfs:domain usdl-core:CompositeService;
-    rdfs:range usdl-core:Service;
-    rdfs:subPropertyOf usdl-core:hasPartTransitive .

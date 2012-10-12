@@ -30,8 +30,13 @@
     foaf:homepage <http://www.cpedrinaci.net> .
 
 <http://linked-usdl.org/ns/usdl#jcardoso> a foaf:Person;
-    foaf:name "Carlos Pedrinaci";
+    foaf:name "Jorge Cardoso";
     foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
+
+<http://linked-usdl.org/ns/usdl#CISUC%2C%20University%20of%20Coimbra> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#jcardoso>;
+    foaf:name "CISUC/DEI, University of Coimbra";
+    foaf:homepage <http://www.dei.uc.pt> .
 
 <http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
     foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;

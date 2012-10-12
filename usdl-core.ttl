@@ -88,20 +88,6 @@ usdl:InteractionProtocol a rdfs:Class, owl:Class;
     rdfs:label "interaction protocol";
     rdfs:comment "The class of interaction protocol descriptions of a service" .
 
-usdl:hasProvider a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has provider";
-    rdfs:comment "Indicates that a given Agent is the provider of the service";
-    rdfs:domain usdl:Service;
-    rdfs:range gr:BusinessEntity .
-
-usdl:hasConsumer a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has provider";
-    rdfs:comment "Indicates that a given Agent is the consumer of the service";
-    rdfs:domain usdl:Service;
-    rdfs:range gr:BusinessEntity .
-
 usdl:hasServiceModel a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has service model";
@@ -155,12 +141,6 @@ usdl:hasPostcondition a rdf:Property;
         usdl:InteractionProtocol;
     rdfs:range usdl:Condition .
 
-usdl:hasRole a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has role";
-    rdfs:comment "Roles of participants which are involved in an interaction";
-    rdfs:domain usdl:Interaction;
-    rdfs:range usdl:Role . 
 
 usdl:hasTechnicalInterface a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -169,18 +149,6 @@ usdl:hasTechnicalInterface a rdf:Property;
     rdfs:domain usdl:InteractionProtocol;
     rdfs:range msm:Service .
 
-usdl:hasPhase a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has implementation specification";
-    rdfs:comment "Phases of an interaction interaction protocl";
-    rdfs:domain usdl:InteractionProtocol .
-
-usdl:initiatorRole a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "initiator role";
-    rdfs:comment "Initiator of an interaction";
-    rdfs:domain usdl:Interaction;
-    rdfs:range usdl:Role . 
 
 usdl:includes a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -214,4 +182,53 @@ usdl:hasOutput a rdf:Property;
     rdfs:domain usdl:Interaction;
     rdfs:range usdl:Parameter;
     rdfs:subPropertyOf usdl:hasParameter .
+
+usdl:hasParticipant a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "has participant";
+    rdfs:comment "Captures the participants involved in a concrete Interaction.";
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Participant.
+
+usdl:Participant a rdfs:Class, owl:Class;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Participat";
+    rdfs:comment "Participant is a class to capture the participation of Entities in a certain Interaction".
+
+usdl:hasAgent a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "has agent";
+    rdfs:comment "Captures the participants involved in a concrete Interaction.";
+    rdfs:domain usdl:Participant;
+    rdfs:range gr:BusinessEntity.
+
+usdl:hasRole a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "has role";
+    rdfs:comment "Role played in a particular Interaction.";
+    rdfs:domain usdl:Interaction;
+    rdfs:range usdl:Role.
+
+usdl:Role a skos:Concept;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Types of Roles";
+    rdfs:comment "The kinds of Role that an entity may play within a certain Interaction".
+
+# some important roles
+
+usdl:Provider a usdl:Role;
+    rdfs:label "Provider";
+    skos:prefLabel "Provider";
+    skos:altLabel "Supplier";
+    skos:definition "A Provider is the entity responsible for providing the Service".
+
+usdl:Consumer a usdl:Role;
+    rdfs:label "Consumer";
+    skos:prefLabel "Consumer";
+    skos:definition "A Consumer is the entity actually using the Service".
+
+usdl-roles:BusinessPartner a usdl:Role;
+    rdfs:label "Business Partner";
+    skos:prefLabel "Business Partner";
+    skos:definition "An business partner is any other participant that acts on behalf of the provider as a third party".
 

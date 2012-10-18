@@ -44,8 +44,7 @@
     foaf:homepage <http://www.open.ac.uk> .
 
 <http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
-    foaf:name "Torsten Leidig";
-    foaf:homepage <> .
+    foaf:name "Torsten Leidig".
 
 <http://linked-usdl.org/ns/usdl#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
     foaf:member <http://linked-usdl.org/ns/usdl#tleidig>;

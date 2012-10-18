@@ -196,7 +196,7 @@ usdl:hasParticipant a rdf:Property;
 
 usdl:Participant a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Participat";
+    rdfs:label "Participant";
     rdfs:comment "Participant is a class to capture the participation of Entities in a certain Interaction".
 
 usdl:hasAgent a rdf:Property;

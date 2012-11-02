@@ -146,14 +146,6 @@ usdl:hasPostcondition a rdf:Property;
     rdfs:range usdl:Condition .
 
 
-usdl:hasTechnicalInterface a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has technical interface";
-    rdfs:comment "The technical interface for a service";
-    rdfs:domain usdl:InteractionProtocol;
-    rdfs:range msm:Service .
-
-
 usdl:includes a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "includes";

@@ -9,7 +9,7 @@
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix org: <http://www.w3.org/ns/org#> .
-@prefix msm: <http://purl.org/msm/v2#> .
+
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
     dc:title "Linked-USDL Core";

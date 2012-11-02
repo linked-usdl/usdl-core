@@ -187,6 +187,17 @@ usdl:hasOutput a rdf:Property;
     rdfs:range usdl:Parameter;
     rdfs:subPropertyOf usdl:hasParameter .
 
+usdl:hasInteractionType a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "has Interaction type";
+    rdfs:comment "How can a customer participate in an interaction.
+                  Possible values are Human-Machine, Human-Human, Machine-Human, Machine-Machine";
+    rdfs:domain usdl:Interaction;
+    rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
+
+
+
+
 usdl:hasParticipant a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has participant";

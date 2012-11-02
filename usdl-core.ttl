@@ -68,10 +68,10 @@ usdl:Parameter a rdfs:Class, owl:Class;
     rdfs:label "parameter";
     rdfs:comment "Parameter is used to capture conceptual input to and output of interactions. Parameters, on the one hand, may be something very vague, like an idea. On the other hand, they can be something specific, such as the architecture blueprint of a building." .
 
-usdl:Interaction a rdfs:Class, owl:Class;
+usdl:InteractionPoint a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "interaction";
-    rdfs:comment "An Interaction represents an actual step in accessing and performing operations of the service. On a technical level this could translate into calling a Web Service operation. On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider). An interaction can be initiated by the consumer or the provider." .
+    rdfs:label "Represetn an interaction point";
+    rdfs:comment "An InteractionPoint represents an actual step in accessing and performing operations of the service. On a technical level this could translate into calling a Web Service operation. On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider). An interaction can be initiated by the consumer or the provider." .
 
 usdl:ServiceModel a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -84,13 +84,7 @@ usdl:ServiceModel a rdfs:Class, owl:Class;
 usdl:Condition a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "Condition";
-    rdfs:comment """<p>The class of conditions for a milstone. Preconditions or postcondition</p>
-""" .
-
-usdl:InteractionProtocol a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "interaction protocol";
-    rdfs:comment "The class of interaction protocol descriptions of a service" .
+    rdfs:comment """<p>The class of conditions for a milstone. Preconditions or postcondition</p>""". 
 
 usdl:hasServiceModel a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -111,71 +105,60 @@ usdl:hasClassification a rdf:Property;
 usdl:hasPrecondition a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has precondition";
-    rdfs:comment """<p>Preconditions to be fulfilled to perform the Interaction or InteractionProtocol.</p>
-""";
-    rdfs:domain
-        usdl:Interaction,
-        usdl:InteractionProtocol;
+    rdfs:comment """<p>Preconditions to be fulfilled to perform the Interaction or InteractionProtocol.</p>""";
+    rdfs:domain usdl:Interaction;
     rdfs:range usdl:Condition .
 
-usdl:hasInteraction a rdf:Property;
+usdl:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction";
-    rdfs:comment """<p>Interactions that are part of the interaction protocol</p>
-""";
-    rdfs:domain usdl:InteractionProtocol;
-    rdfs:range usdl:Interaction .
+    rdfs:comment """<p>Interactions that are part of the interaction protocol</p>""";
+    rdfs:domain usdl:Service;
+    rdfs:range usdl:InteractionPoint .
 
 usdl:hasInput a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has input";
-    rdfs:comment """<p>Input parameters required for the interaction</p>
-""";
-    rdfs:domain usdl:Interaction;
+    rdfs:comment """<p>Input parameters required for the interaction</p>""";
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Parameter;
     rdfs:subPropertyOf usdl:hasParameter .
 
 usdl:hasPostcondition a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has postcondition";
-    rdfs:comment """<p>Postcondition that holds if the phase was performed successfully</p>
-""";
-    rdfs:domain
-        usdl:Interaction,
-        usdl:InteractionProtocol;
+    rdfs:comment """<p>Postcondition that holds if the phase was performed successfully</p>""";
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Condition .
 
 
 usdl:includes a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "includes";
-    rdfs:comment """A ServiceOffering bundles a number of services and associates concrete service levels and pricing for for the purpose of selling to customers. The ServiceOffering is the client's view on services on a service marketplace. Services are usually purchased via a specific ServiceOffering.
-""";
+    rdfs:comment """A ServiceOffering bundles a number of services and associates concrete service levels and pricing for for the purpose of selling to customers. The ServiceOffering is the client's view on services on a service marketplace. Services are usually purchased via a specific ServiceOffering.""";
     rdfs:subPropertyOf gr:includes;
     rdfs:domain usdl:ServiceOffering;
     rdfs:range usdl:Service .
 
-usdl:hasInteractionProtocol a rdf:Property;
+usdl:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has interaction protocol";
-    rdfs:comment "Interaction protocol of a service: The set of interaction protocols enacted by the service, which have to be followed to ensure successful use of the service's capabilities";
+    rdfs:label "has interaction point";
+    rdfs:comment "Interaction point is a logical point were a consumer interacts with a supplier.";
     rdfs:domain usdl:Service;
-    rdfs:range usdl:InteractionProtocol .
+    rdfs:range usdl:InteractionPoint .
 
 usdl:hasParameter a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has parameter";
-    rdfs:comment """<p>Input parameters required for the interaction</p>
-""";
-    rdfs:domain usdl:Interaction;
+    rdfs:comment """<p>Input parameters required for the interaction</p>""";
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Parameter .
 
 usdl:hasOutput a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has output";
-    rdfs:comment """<p>Output parameters required for the function</p>
-""";
-    rdfs:domain usdl:Interaction;
+    rdfs:comment """<p>Output parameters required for the function</p>""";
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Parameter;
     rdfs:subPropertyOf usdl:hasParameter .
 
@@ -184,7 +167,7 @@ usdl:hasInteractionType a rdf:Property;
     rdfs:label "has interaction type";
     rdfs:comment "How can a customer participate in an interaction.
                   Possible values are: Human-Machine, Human-Human, Machine-Human, Machine-Machine";
-    rdfs:domain usdl:Interaction;
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
 
 usdl:hasInteractionSpace a rdf:Property;
@@ -193,7 +176,7 @@ usdl:hasInteractionSpace a rdf:Property;
     rdfs:comment "Does the interaction between customer and provider occurs at the same physical place? 
                   Or the interaction is mediated by technology?
                   Possible values are: Presential, Remote";
-    rdfs:domain usdl:Interaction;
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
 
 
@@ -201,7 +184,7 @@ usdl:hasParticipant a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has participant";
     rdfs:comment "Captures the participants involved in a concrete Interaction.";
-    rdfs:domain usdl:Interaction;
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Participant.
 
 usdl:Participant a rdfs:Class, owl:Class;

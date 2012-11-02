@@ -231,8 +231,8 @@ usdl:Consumer a usdl:Role;
     skos:prefLabel "Consumer";
     skos:definition "A Consumer is the entity actually using the Service".
 
-usdl:BusinessPartner a usdl:Role;
-    rdfs:label "Business Partner";
-    skos:prefLabel "Business Partner";
+usdl:Partner a usdl:Role;
+    rdfs:label " Partner";
+    skos:prefLabel "Partner";
     skos:definition "An business partner is any other participant that acts on behalf of the provider as a third party".
 

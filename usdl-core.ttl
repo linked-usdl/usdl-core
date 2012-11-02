@@ -210,7 +210,7 @@ usdl:hasRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has role";
     rdfs:comment "Role played in a particular Interaction.";
-    rdfs:domain usdl:Interaction;
+    rdfs:domain usdl:Participant;
     rdfs:range usdl:Role.
 
 usdl:Role a skos:Concept;

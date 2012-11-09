@@ -63,14 +63,9 @@ usdl:ServiceOffering a rdfs:Class, owl:Class;
     rdfs:comment "A service offering is an offering made by a gr:BusinessEntity of one or more services to the public or specific customers. It  usually gives defines a price and terms and conditions including service level agreements";
     rdfs:subClassOf gr:Offering .
 
-usdl:Parameter a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "parameter";
-    rdfs:comment "Parameter is used to capture conceptual input to and output of interactions. Parameters, on the one hand, may be something very vague, like an idea. On the other hand, they can be something specific, such as the architecture blueprint of a building." .
-
 usdl:InteractionPoint a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Represetn an interaction point";
+    rdfs:label "Represents an interaction point";
     rdfs:comment "An InteractionPoint represents an actual step in accessing and performing operations of the service. On a technical level this could translate into calling a Web Service operation. On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider). An interaction can be initiated by the consumer or the provider." .
 
 usdl:ServiceModel a rdfs:Class, owl:Class;
@@ -116,13 +111,19 @@ usdl:hasInteractionPoint a rdf:Property;
     rdfs:domain usdl:Service;
     rdfs:range usdl:InteractionPoint .
 
-usdl:hasInput a rdf:Property;
+usdl:hasInterface a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has input";
-    rdfs:comment """<p>Input parameters required for the interaction</p>""";
+    rdfs:label "has interface";
+    rdfs:comment """<p>Interactions can have an interface such as phone, fax, emaill, Web form, Web service, etc. </p>""";
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Parameter;
-    rdfs:subPropertyOf usdl:hasParameter .
+    rdfs:range usdl:Interface .
+
+usdl:receives a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "receives";
+    rdfs:comment """<p>Input required for the interaction</p>""";
+    rdfs:domain usdl:InteractionPoint;
+    rdfs:range rdfs:Resource.
 
 usdl:hasPostcondition a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -147,20 +148,12 @@ usdl:hasInteractionPoint a rdf:Property;
     rdfs:domain usdl:Service;
     rdfs:range usdl:InteractionPoint .
 
-usdl:hasParameter a rdf:Property;
+usdl:yields a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has parameter";
-    rdfs:comment """<p>Input parameters required for the interaction</p>""";
+    rdfs:label "yields";
+    rdfs:comment """<p>Outcome yield by an interaction</p>""";
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Parameter .
-
-usdl:hasOutput a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has output";
-    rdfs:comment """<p>Output parameters required for the function</p>""";
-    rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Parameter;
-    rdfs:subPropertyOf usdl:hasParameter .
+    rdfs:range rdfs:Resource.
 
 usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;

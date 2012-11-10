@@ -158,17 +158,14 @@ usdl:yields a rdf:Property;
 usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction type";
-    rdfs:comment "How can a customer participate in an interaction.
-                  Possible values are: Human-Machine, Human-Human, Machine-Human, Machine-Machine";
+    rdfs:comment "How can a customer participate in an interaction. Possible values are: Human-Machine, Human-Human, Machine-Human, Machine-Machine";
     rdfs:domain usdl:InteractionPoint;
     rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
 
 usdl:hasInteractionSpace a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction space";
-    rdfs:comment "Does the interaction between customer and provider occurs at the same physical place? 
-                  Or the interaction is mediated by technology?
-                  Possible values are: Presential, Remote";
+    rdfs:comment "Does the interaction between customer and provider occurs at the same physical place? Or the interaction is mediated by technology? Possible values are: Presential, Remote";
     rdfs:domain usdl:InteractionPoint;
     rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
 

@@ -101,7 +101,7 @@ usdl:hasPrecondition a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has precondition";
     rdfs:comment """<p>Preconditions to be fulfilled to perform the Interaction or InteractionProtocol.</p>""";
-    rdfs:domain usdl:Interaction;
+    rdfs:domain usdl:InteractionPoint;
     rdfs:range usdl:Condition .
 
 usdl:hasInteractionPoint a rdf:Property;

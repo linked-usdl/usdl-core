@@ -111,12 +111,6 @@ usdl:hasInteractionPoint a rdf:Property;
     rdfs:domain usdl:Service;
     rdfs:range usdl:InteractionPoint .
 
-usdl:Interface a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Interface";
-    rdfs:comment """The interface denotes how to use the serivice technically. Examples: Web-Service, phone calls, fax, etc. """. 
-
-
 usdl:hasInterface a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interface";

@@ -129,7 +129,7 @@ usdl:receives a rdf:Property;
     rdfs:label "receives";
     rdfs:comment """<p>Input required for the interaction</p>""";
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range rdfs:Resource.
+    rdfs:range rdfs:Class.
 
 usdl:hasPostcondition a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -159,7 +159,7 @@ usdl:yields a rdf:Property;
     rdfs:label "yields";
     rdfs:comment """<p>Outcome yield by an interaction</p>""";
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range rdfs:Resource.
+    rdfs:range rdfs:Class.
 
 usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;

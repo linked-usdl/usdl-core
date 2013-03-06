@@ -1,0 +1,98 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix usdl: <http://www.linked-usdl.org/ns/usdl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@base <http://linked-usdl.org/ns/usdl-business-roles#> .
+
+
+<> a skos:ConceptScheme , owl:Ontology;
+    dc:title "Linked USDL Basic Business Roles concept scheme";
+    dc:description """<p>This vocabulary provides the core business roles contemplated within Linked USDL. The taxonomy provided here is a minimal reference one. Extensions or replacements for this could be defined an used within applications in the very same way by refining usdl:BusinessRole or creating further SKOS concept schemes. </p>"""@en ;
+    dc:modified "2013-02-11"^^xsd:date;
+    vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-business-roles#";
+    vann:preferredNamespacePrefix "usdl-br";
+    foaf:page <http://linked-usdl.org/ns/usdl-business-roles.html>;
+    dc:creator
+        <http://linked-usdl.org/ns/usdl#cpedrinaci>,
+        <http://linked-usdl.org/ns/usdl#jcardoso>,
+        <http://linked-usdl.org/ns/usdl#tleidig> ;
+	skos:prefLabel "Business Roles"@en ;
+	skos:hasTopConcept <regulator>, <producer>, <provider>, <intermediary>, <consumer>, <customer>.
+
+<http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
+    foaf:name "Carlos Pedrinaci";
+    foaf:homepage <http://www.cpedrinaci.net> .
+
+<http://linked-usdl.org/ns/usdl#jcardoso> a foaf:Person;
+    foaf:name "Jorge Cardoso";
+    foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
+
+<http://linked-usdl.org/ns/usdl#CISUC%2C%20University%20of%20Coimbra> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#jcardoso>;
+    foaf:name "CISUC/DEI, University of Coimbra";
+    foaf:homepage <http://www.dei.uc.pt> .
+
+<http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
+    foaf:name "Knowledge Media Institute, The Open University";
+    foaf:homepage <http://www.open.ac.uk> .
+
+<http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
+    foaf:name "Torsten Leidig".
+
+<http://linked-usdl.org/ns/usdl#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#tleidig>;
+    foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
+    foaf:homepage <http://www.sap.com> .
+
+# Core basic roles
+<provider> a usdl:BusinessRole;
+    rdfs:label "Provider"@en ;
+    skos:prefLabel "Provider"@en ;
+    skos:altLabel "Supplier"@en ;
+    skos:definition "<p>A Provider is the entity responsible for providing the Service.</p>"@en ;
+	skos:topConceptOf <>;
+	skos:inScheme <>.
+
+<producer> a usdl:BusinessRole;
+    rdfs:label "Producer"@en ;
+    skos:prefLabel "Producer"@en ;
+    skos:definition "<p>A Producer is the entity that actually deliver a given Service. This may often be the Provider, i.e., the entity responsible, but it may in other cases be a subcontracted entity or a named individual. Tracking this allows for example to know who the actual contact point is, or who may be legally liable for a certain error.</p>"@en ;
+	skos:topConceptOf <>;
+	skos:inScheme <>.
+
+<regulator> a usdl:BusinessRole;
+    rdfs:label "Regulator"@en ;
+    skos:prefLabel "Regulator"@en ;
+    skos:altLabel "Regulation Body"@en ;
+    skos:definition "<p>A Regulator is a third party entity, often governmental, that is in charge of ensuring the adequate application of regulations and best practices. Tracking this information allows one to know the entity one can revolve to in order to deal with concrete problems or simply to have an added garanty that proper control is exercised over a given business activity.</p>"@en ;
+	skos:topConceptOf <>;
+	skos:inScheme <>.
+
+<intermediary> a usdl:BusinessRole;
+    rdfs:label "Intermediary"@en ;
+    skos:prefLabel "Intermediary"@en ;
+    skos:definition "<p>An Intermediary is a third party entity that is involved in the actual service delivery chain. This may be a subcontractor, a broker, etc. Tracking this information allows one to know the entities involved in an entire chain.</p>"@en ;
+	skos:topConceptOf <>;
+	skos:inScheme <>.
+
+<consumer> a usdl:BusinessRole;
+    rdfs:label "Consumer"@en ;
+    skos:prefLabel "Consumer"@en ;
+    skos:altLabel "End-user"@en ;
+    skos:definition "<p>A Consumer is the actual end-user benefiting from a Service. In many cases this will coincide with the Customer (i.e., the entity that contracted the service), but this is not necessarily the case. For instance, travel insurances for workers are typically contracted by the company but it is the actual workers that benefit from it. Similarly a car insurance may be contracted by a member of a family and used by all the drivers in the family.</p>"@en .
+	skos:topConceptOf <>;
+	skos:inScheme <>;
+	owl:sameAs gr:EndUser .
+
+<customer> a usdl:BusinessRole;
+    rdfs:label "Customer"@en ;
+    skos:prefLabel "Customer"@en ;
+    skos:definition "<p>A Customer is the entity that contracted a given service from a particular provider. It is often the entity that will pay for the service. It may often coincide with the actual Consumer or end-user but need not be necessarily the case. See Consumer.</p>"@en .
+	skos:topConceptOf <>;
+	skos:inScheme <>.

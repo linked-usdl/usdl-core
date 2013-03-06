@@ -5,10 +5,11 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix usdl: <http://www.linked-usdl.org/ns/usdl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
 @base <http://linked-usdl.org/ns/usdl-business-roles#> .
-
 
 <> a skos:ConceptScheme , owl:Ontology;
     dc:title "Linked USDL Basic Business Roles concept scheme";
@@ -50,7 +51,7 @@
     foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
     foaf:homepage <http://www.sap.com> .
 
-# Core basic roles
+# Core basic business roles
 <provider> a usdl:BusinessRole;
     rdfs:label "Provider"@en ;
     skos:prefLabel "Provider"@en ;
@@ -85,7 +86,7 @@
     rdfs:label "Consumer"@en ;
     skos:prefLabel "Consumer"@en ;
     skos:altLabel "End-user"@en ;
-    skos:definition "<p>A Consumer is the actual end-user benefiting from a Service. In many cases this will coincide with the Customer (i.e., the entity that contracted the service), but this is not necessarily the case. For instance, travel insurances for workers are typically contracted by the company but it is the actual workers that benefit from it. Similarly a car insurance may be contracted by a member of a family and used by all the drivers in the family.</p>"@en .
+    skos:definition "<p>A Consumer is the actual end-user benefiting from a Service. In many cases this will coincide with the Customer (i.e., the entity that contracted the service), but this is not necessarily the case. For instance, travel insurances for workers are typically contracted by the company but it is the actual workers that benefit from it. Similarly a car insurance may be contracted by a member of a family and used by all the drivers in the family.</p>"@en ;
 	skos:topConceptOf <>;
 	skos:inScheme <>;
 	owl:sameAs gr:EndUser .
@@ -93,6 +94,6 @@
 <customer> a usdl:BusinessRole;
     rdfs:label "Customer"@en ;
     skos:prefLabel "Customer"@en ;
-    skos:definition "<p>A Customer is the entity that contracted a given service from a particular provider. It is often the entity that will pay for the service. It may often coincide with the actual Consumer or end-user but need not be necessarily the case. See Consumer.</p>"@en .
+    skos:definition "<p>A Customer is the entity that contracted a given service from a particular provider. It is often the entity that will pay for the service. It may often coincide with the actual Consumer or end-user but need not be necessarily the case. See Consumer.</p>"@en ;
 	skos:topConceptOf <>;
 	skos:inScheme <>.

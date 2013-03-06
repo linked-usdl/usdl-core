@@ -75,11 +75,6 @@ usdl:ServiceModel a rdfs:Class, owl:Class;
         usdl:Service,
         gr:ProductOrServiceModel .
 
-usdl:Condition a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Condition"@en ;
-    rdfs:comment """<p>The class of conditions for a milestone. Preconditions or postcondition</p>"""@en . 
-
 usdl:hasServiceModel a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has service model"@en ;
@@ -95,20 +90,6 @@ usdl:hasClassification a rdf:Property;
     rdfs:comment "<p>Indicates a classification of a Service.</p>"@en ;
     rdfs:domain usdl:Service;
     rdfs:range skos:Concept.
-
-usdl:hasPrecondition a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has precondition"@en ;
-    rdfs:comment """<p>Preconditions to be fulfilled to perform the InteractionPoint.</p>"""@en ;
-    rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Condition .
-
-usdl:hasPostcondition a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has postcondition"@en ;
-    rdfs:comment """<p>Postcondition that holds if the InteractionPoint was performed successfully.</p>"""@en ;
-    rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Condition .
 
 usdl:Interface a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;

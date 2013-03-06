@@ -1,0 +1,88 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix usdl: <http://www.linked-usdl.org/ns/usdl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@base <http://linked-usdl.org/ns/usdl-interaction-roles#> .
+
+
+<> a skos:ConceptScheme , owl:Ontology;
+    dc:title "Linked USDL Basic Interaction Roles concept scheme";
+    dc:description """<p>This vocabulary provides the core interaction roles contemplated within Linked USDL. The taxonomy provided here is a minimal reference one. Extensions or replacements for this could be defined an used within applications in the very same way by refining usdl:InteractionRole or creating further SKOS concept schemes. </p>"""@en ;
+    dc:modified "2013-02-11"^^xsd:date;
+    vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-interaction-roles#";
+    vann:preferredNamespacePrefix "usdl-ir";
+    foaf:page <http://linked-usdl.org/ns/usdl-interaction-roles.html>;
+    dc:creator
+        <http://linked-usdl.org/ns/usdl#cpedrinaci>,
+        <http://linked-usdl.org/ns/usdl#jcardoso>,
+        <http://linked-usdl.org/ns/usdl#tleidig> ;
+	skos:prefLabel "Interaction Roles"@en ;
+	skos:hasTopConcept <observer>, <participant>.
+
+<http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
+    foaf:name "Carlos Pedrinaci";
+    foaf:homepage <http://www.cpedrinaci.net> .
+
+<http://linked-usdl.org/ns/usdl#jcardoso> a foaf:Person;
+    foaf:name "Jorge Cardoso";
+    foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
+
+<http://linked-usdl.org/ns/usdl#CISUC%2C%20University%20of%20Coimbra> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#jcardoso>;
+    foaf:name "CISUC/DEI, University of Coimbra";
+    foaf:homepage <http://www.dei.uc.pt> .
+
+<http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
+    foaf:name "Knowledge Media Institute, The Open University";
+    foaf:homepage <http://www.open.ac.uk> .
+
+<http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
+    foaf:name "Torsten Leidig".
+
+<http://linked-usdl.org/ns/usdl#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
+    foaf:member <http://linked-usdl.org/ns/usdl#tleidig>;
+    foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
+    foaf:homepage <http://www.sap.com> .
+
+# Core basic interaction roles
+<observer> a usdl:InteractionRole;
+    rdfs:label "Observer"@en ;
+    skos:prefLabel "Observer"@en ;
+    skos:definition "<p>An Observer within an Interaction is a third party entity that does not take any active role within the interaction. Observers are typically monitoring the actual activities in order to ensure that best practices or regulations are followed (e.g., Regulators, Quality Assurance Departments).</p>"@en ;
+	skos:topConceptOf <>;
+	skos:narrower <initiator>, <mediator>, <receiver>;
+	skos:inScheme <>.
+
+<participant> a usdl:InteractionRole;
+    rdfs:label "participant"@en ;
+    skos:prefLabel "participant"@en ;
+    skos:definition "<p>A Participant is an entity that takes active part within a concrete interaction.</p>"@en ;
+	skos:topConceptOf <>;
+	skos:inScheme <>.
+
+<initiator> a usdl:InteractionRole;
+    rdfs:label "initiator"@en ;
+    skos:prefLabel "initiator"@en ;
+    skos:definition "<p>An Initiator within an Interaction is the entity that should initiate the interaction.</p>"@en ;
+	skos:broader <participant>;
+	skos:inScheme <>.
+
+<mediator> a usdl:InteractionRole;
+    rdfs:label "Mediator"@en ;
+    skos:prefLabel "Mediator"@en ;
+    skos:definition "<p>A Mediator is an entity that is involved within a given interaction but is neither the initiator nor the final destination of a given interaction. An interaction reaching a Mediator is not considered to be concluded.</p>"@en ;
+	skos:broader <participant>;
+	skos:inScheme <>.
+
+<receiver> a usdl:InteractionRole;
+    rdfs:label "receiver"@en ;
+    skos:prefLabel "receiver"@en ;
+    skos:definition "<p>A Receiver is the final destination of a given interaction. Once an interaction has reacher the receiver, the interaction is considered to be concluded.</p>"@en ;
+	skos:broader <participant>;
+	skos:inScheme <>.

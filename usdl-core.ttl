@@ -9,12 +9,16 @@
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix msm: <http://purl.org/msm/v2#> .
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
     dc:title "Linked USDL Core"@en ;
     dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
 <p>This first draft includes most of the original USDL specification with some useful simplifications. </p>"""@en ;
     dc:modified "2012-09-20"^^xsd:date;
+    dc:modified "2013-03-06"^^xsd:date;
+    dc:modified "2013-03-07"^^xsd:date;
+    dc:modified "2013-03-08"^^xsd:date;
     vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl#";
     vann:preferredNamespacePrefix "usdl";
     foaf:page <http://linked-usdl.org/ns/usdl.html>;
@@ -85,17 +89,12 @@ usdl:hasClassification a rdf:Property;
     rdfs:domain usdl:Service;
     rdfs:range skos:Concept.
 
-usdl:Interface a rdfs:Class, owl:Class;
+usdl:hasContactMedium a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Interface"@en ;
-    rdfs:comment """<p>The Interface denotes how to use the service technically. Examples: Web-Service, phone calls, fax, etc.</p>"""@en . 
-
-usdl:hasInterface a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has interface"@en ;
-    rdfs:comment """<p>InteractionPoints can have an Interface such as phone, fax, emaill, Web form, Web service, etc. </p>"""@en ;
+    rdfs:label "has contact medium"@en ;
+    rdfs:comment """<p>InteractionPoints can have several ContactMedia, i.e., ways for interacting like the phone, email, etc. </p>"""@en ;
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:Interface .
+    rdfs:range nco:ContactMedium .
 
 usdl:receives a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -138,14 +137,14 @@ usdl:hasInteractionPoint a rdf:Property;
 usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction type"@en ;
-    rdfs:comment "<p>The hasInteractionType relationship captures the modes of interaction that govern an InteractionPoint.</p>"@en ;
-    rdfs:domain usdl:InteractionPoint;
+    rdfs:comment "<p>The hasInteractionType relationship captures the modes of interaction for a given InteractionPoint through a particular ContactMedium.</p>"@en ;
+    rdfs:domain nco:ContactMedium;
     rdfs:range usdl:InteractionType.
 
 usdl:InteractionType rdfs:subClassOf skos:Concept;
 	    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
 	    rdfs:label "Interaction Type"@en ;
-	    rdfs:comment "<p>This concept covers the kinds of Interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of usdl:InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
+	    rdfs:comment "<p>This concept covers the kinds of interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of usdl:InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
 
 usdl:hasInteractingEntity a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -244,6 +243,7 @@ usdl:occursAt a rdf:Property;
 	rdfs:domain usdl:InstantaneousEntity;
 	rdfs:range time:Instant.
 
-
+# Integrate MSM and add support for Web Service operations as a Contact Medium
+msm:Operation rdfs:subClassOf nco:ContactMedium.
 
 

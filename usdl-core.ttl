@@ -125,8 +125,6 @@ usdl:includes a rdf:Property;
     rdfs:domain usdl:ServiceOffering;
     rdfs:range usdl:Service .
 
-
-
 usdl:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction"@en ;
@@ -158,23 +156,23 @@ usdl:InteractingEntity a rdfs:Class, owl:Class;
     rdfs:label "Interacting Entity"@en ;
     rdfs:comment "<p>InteractingEntity helps captures a ternary relationship between InteractionPoints the types of BusinessEntities involved (based on their role e.g., provider or consumer) and the actual InteractionRole (e.g., initiator or receiver) of that BusinessEntity within a particular InteractionPoint. This enables specifying for instance the fact that an insurance claim should be initiated by the consumer through an interaction with the insurance provider.</p>"@en .
 
-usdl:Involvement a rdfs:Class, owl:Class;
+usdl:InvolvedEntity a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Involvement"@en ;
-    rdfs:comment "<p>Involvement helps captures a ternary relationship between Services (or ServiceModels) the BusinessEntities involved in the service process and the Role they play, e.g., provider, intermediary, etc. This enables specifying, for instance the fact that a given insurance service is provided by a certain company, or that a third party is actually involved in the service delivery chain.</p>"@en .
+    rdfs:label "Involved Entity"@en ;
+    rdfs:comment "<p>InvolvedEntity helps captures a ternary relationship between Services (or ServiceModels) the BusinessEntities involved in the service process and the Role they play, e.g., provider, intermediary, etc. This enables specifying, for instance the fact that a given insurance service is provided by a certain company, or that a third party is actually involved in the service delivery chain.</p>"@en .
 
-usdl:involves a rdf:Property;
+usdl:hasInvolvedEntity a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "involves"@en ;
-    rdfs:comment "<p>Captures the Involvement of a Business Entity within a given Service or Service Model. By means of this Involvement we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
+    rdfs:label "has involved entity"@en ;
+    rdfs:comment "<p>Captures the involvements of BusinessEntities within a given Service or Service Model. By means of InvolvedEntity we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
     rdfs:domain [a owl:Class; owl:unionOf (usdl:Service usdl:ServiceModel)];
-    rdfs:range usdl:Involvement.
+    rdfs:range usdl:InvolvedEntity.
 
 usdl:hasBusinessEntity a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has business entity"@en ;
-    rdfs:comment "<p>Captures the Business Entity involved in a particular Service or Service Model. For instance the entity involved could be SAP, IBM, Siemens, etc.</p>"@en ;
-    rdfs:domain usdl:Involvement;
+    rdfs:comment "<p>Captures the BusinessEntity involved in a particular InvolvedEntity. For instance the entity involved could be SAP, IBM, Siemens, etc.</p>"@en ;
+    rdfs:domain usdl:InvolvedEntity;
     rdfs:range gr:BusinessEntity.
 
 usdl:Role a rdfs:Class, owl:Class;
@@ -192,8 +190,8 @@ usdl:BusinessRole a rdfs:Class, owl:Class;
 usdl:hasBusinessRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has business role"@en ;
-    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular Service or ServiceModel. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
-    rdfs:domain usdl:Involvement;
+    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular InvolvedEntity. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
+    rdfs:domain usdl:InvolvedEntity;
     rdfs:range usdl:BusinessRole.
 
 usdl:hasInteractionRole a rdf:Property;

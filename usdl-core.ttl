@@ -8,8 +8,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix org: <http://www.w3.org/ns/org#> .
-
+@prefix time: <http://www.w3.org/2006/time#> .
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
     dc:title "Linked USDL Core"@en ;
@@ -61,11 +60,6 @@ usdl:ServiceOffering a rdfs:Class, owl:Class;
     rdfs:label "Service Offering"@en ;
     rdfs:comment "<p>A ServiceOffering is an offering made by a gr:BusinessEntity of one or more services to customers. An offering usually associates a price, legal terms of use and conditions included in service level agreements with a service. In other words, it makes a service a tradable entity.</p>"@en ;
     rdfs:subClassOf gr:Offering .
-
-usdl:InteractionPoint a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Interaction Point"@en ;
-    rdfs:comment "<p>An InteractionPoint represents an actual step in accessing and performing operations of the service. On a technical level this could translate into calling a Web Service operation. On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider). An InteractionPoint can be initiated by the consumer or the provider.</p>"@en  .
 
 usdl:ServiceModel a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -124,6 +118,15 @@ usdl:includes a rdf:Property;
     rdfs:subPropertyOf gr:includes;
     rdfs:domain usdl:ServiceOffering;
     rdfs:range usdl:Service .
+
+usdl:InteractionPoint a rdfs:Class, owl:Class;
+	rdfs:subClassOf usdl:TimeSpanningEntity;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Interaction Point"@en ;
+    rdfs:comment """<p>An InteractionPoint represents an actual step in accessing and performing operations of the service. On a technical level this could translate into calling a Web Service operation. 
+On a professional level, it could mean that consumer and provider meet in person to exchange service parameters or resources involved in the service delivery (e.g. documents that are processed by the provider). 
+An InteractionPoint can be initiated by the consumer or the provider. Since InteractionPoints may take time and have an ordering with respect to other InteractionPoints, this is a subclass of TimeSpanningEntity.
+One can therefore express temporal relationships between InteractionPoints such as before or after. For richer expressions the time ontology constructs could be used.</p>"""@en  .
 
 usdl:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -207,6 +210,39 @@ usdl:hasEntityType a rdf:Property;
     rdfs:comment "<p>Captures the EntityType, i.e., an entity playing a certain BusinessRole, like service Provider, that is involved in a particular InteractionPoint. This allows expressing things like: for using your repair service you should contact the reseller of your product.</p>"@en ;
 	rdfs:domain usdl:InteractingEntity;
 	rdfs:range usdl:InteractionRole.
+
+usdl:TimeSpanningEntity a rdfs:Class, owl:Class;
+	rdfs:subClassOf time:TemporalEntity;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Time Spanning Entity"@en ;
+    rdfs:comment """<p>A Time Spanning Entity is an entity that has a temporal extent over an interval of time. In other words, anything that takes place during an time interval. 
+This is a link to a time ontology that allows us to declare and reason about temporal relationships between things like the ordering of InteractionPoints, etc. 
+In the current state the use of the time ontology is very reduced for simplicity but it is included so that, whenever necessary, one can make use of more advanced temporal constructs. 
+Being a subclass of TemporalEntity, the two main relationships before and after can be applied. In more complex scenarios one would reason about the interval spanned using the richer
+interval reasoning constructs provided by the time ontology.</p>"""@en .
+
+usdl:spansInterval a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "spans interval"@en ;
+    rdfs:comment "<p>Captures the interval during which a Time Spanning Entity takes/took place.</p>"@en ;
+	rdfs:domain usdl:TimeSpanningEntity;
+	rdfs:range time:Interval.
+
+usdl:InstantaneousEntity a rdfs:Class, owl:Class;
+	rdfs:subClassOf time:TemporalEntity;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Instantaneous Entity"@en ;
+    rdfs:comment """<p>An Instantaneous Entity is an entity that occurs at a specific point on time. This is a link to a time ontology that allows us to declare and reason about temporal relationships between things like the ordering of InteractionPoints, etc. 
+In the current state the use of the time ontology is very reduced for simplicity but it is included so that, whenever necessary, one can make use of more advanced temporal constructs.
+Being a subclass of TemporalEntity, the two main relationships before and after can be applied. In more complex scenarios one would reason about the instant it occurred at using the richer
+constructs provided by the time ontology.</p>"""@en .
+
+usdl:occursAt a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "occurs at"@en ;
+    rdfs:comment "<p>Captures the instant at which an Instantaneous Entity took place.</p>"@en ;
+	rdfs:domain usdl:InstantaneousEntity;
+	rdfs:range time:Instant.
 
 
 

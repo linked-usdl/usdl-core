@@ -10,6 +10,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix msm: <http://purl.org/msm/v2#> .
+@prefix nco: <http://www.semanticdesktop.org/ontologies/2007/03/22/nco#> .
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
     dc:title "Linked USDL Core"@en ;

@@ -14,6 +14,8 @@
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
 	dc:created "2012-09-20"^^xsd:date ;
+	dc:issued "2012-09-20"^^xsd:date ;
+	rdfs:label "Linked USDL Core"@en ;
     dc:title "Linked USDL Core"@en ;
     dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
 <p>This first draft includes most of the original USDL specification with some useful simplifications. </p>"""@en ;
@@ -134,6 +136,13 @@ usdl:hasInteractionPoint a rdf:Property;
     rdfs:domain [a owl:Class; owl:unionOf (usdl:Service usdl:ServiceModel)];
     rdfs:range usdl:InteractionPoint .
 
+usdl:spansInterval a rdf:Property;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "spans interval"@en ;
+    rdfs:comment "<p>Captures the fact that an Interaction Point spans an interval of time.</p>"@en ;
+    rdfs:domain usdl:InteractionPoint;
+    rdfs:range time:Interval.
+
 usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction type"@en ;
@@ -142,9 +151,9 @@ usdl:hasInteractionType a rdf:Property;
     rdfs:range usdl:InteractionType.
 
 usdl:InteractionType rdfs:subClassOf skos:Concept;
-	    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-	    rdfs:label "Interaction Type"@en ;
-	    rdfs:comment "<p>This concept covers the kinds of interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of usdl:InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
+	rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+	rdfs:label "Interaction Type"@en ;
+	rdfs:comment "<p>This concept covers the kinds of interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of usdl:InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
 
 usdl:hasInteractingEntity a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -215,39 +224,6 @@ usdl:hasEntityType a rdf:Property;
     rdfs:comment "<p>Captures the EntityType, i.e., an entity playing a certain BusinessRole, like service Provider, that is involved in a particular InteractionPoint. This allows expressing things like: for using your repair service you should contact the reseller of your product.</p>"@en ;
 	rdfs:domain usdl:InteractingEntity;
 	rdfs:range usdl:InteractionRole.
-
-usdl:TimeSpanningEntity a rdfs:Class, owl:Class;
-	rdfs:subClassOf time:TemporalEntity;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Time Spanning Entity"@en ;
-    rdfs:comment """<p>A Time Spanning Entity is an entity that has a temporal extent over an interval of time. In other words, anything that takes place during an time interval. 
-This is a link to a time ontology that allows us to declare and reason about temporal relationships between things like the ordering of InteractionPoints, etc. 
-In the current state the use of the time ontology is very reduced for simplicity but it is included so that, whenever necessary, one can make use of more advanced temporal constructs. 
-Being a subclass of TemporalEntity, the two main relationships before and after can be applied. In more complex scenarios one would reason about the interval spanned using the richer
-interval reasoning constructs provided by the time ontology.</p>"""@en .
-
-usdl:spansInterval a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "spans interval"@en ;
-    rdfs:comment "<p>Captures the interval during which a Time Spanning Entity takes/took place.</p>"@en ;
-	rdfs:domain usdl:TimeSpanningEntity;
-	rdfs:range time:Interval.
-
-usdl:InstantaneousEntity a rdfs:Class, owl:Class;
-	rdfs:subClassOf time:TemporalEntity;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Instantaneous Entity"@en ;
-    rdfs:comment """<p>An Instantaneous Entity is an entity that occurs at a specific point on time. This is a link to a time ontology that allows us to declare and reason about temporal relationships between things like the ordering of InteractionPoints, etc. 
-In the current state the use of the time ontology is very reduced for simplicity but it is included so that, whenever necessary, one can make use of more advanced temporal constructs.
-Being a subclass of TemporalEntity, the two main relationships before and after can be applied. In more complex scenarios one would reason about the instant it occurred at using the richer
-constructs provided by the time ontology.</p>"""@en .
-
-usdl:occursAt a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "occurs at"@en ;
-    rdfs:comment "<p>Captures the instant at which an Instantaneous Entity took place.</p>"@en ;
-	rdfs:domain usdl:InstantaneousEntity;
-	rdfs:range time:Instant.
 
 # Integrate MSM and add support for Web Service operations as a Contact Medium
 msm:Operation rdfs:subClassOf nco:ContactMedium.

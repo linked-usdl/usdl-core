@@ -9,24 +9,23 @@
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix msm: <http://purl.org/msm/v2#> .
+@prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
 @prefix nco: <http://www.semanticdesktop.org/ontologies/2007/03/22/nco#> .
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
+	dc:created "2012-09-20"^^xsd:date ;
     dc:title "Linked USDL Core"@en ;
     dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
 <p>This first draft includes most of the original USDL specification with some useful simplifications. </p>"""@en ;
-    dc:modified "2012-09-20"^^xsd:date;
-    dc:modified "2013-03-06"^^xsd:date;
-    dc:modified "2013-03-07"^^xsd:date;
-    dc:modified "2013-03-08"^^xsd:date;
+    dc:modified "2012-09-20"^^xsd:date, "2013-03-06"^^xsd:date, "2013-03-07"^^xsd:date, "2013-03-08"^^xsd:date, "2013-08-29"^^xsd:date;
     vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl#";
     vann:preferredNamespacePrefix "usdl";
     foaf:page <http://linked-usdl.org/ns/usdl.html>;
     dc:creator
         <http://linked-usdl.org/ns/usdl#cpedrinaci>,
         <http://linked-usdl.org/ns/usdl#jcardoso>,
-        <http://linked-usdl.org/ns/usdl#tleidig> .
+        <http://linked-usdl.org/ns/usdl#tleidig> ;
+	owl:versionInfo "0.9" .
 
 <http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
     foaf:name "Carlos Pedrinaci";
@@ -41,7 +40,7 @@
     foaf:name "CISUC/DEI, University of Coimbra";
     foaf:homepage <http://www.dei.uc.pt> .
 
-<http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
+<http://linked-usdl.org/ns/usdl#KMi> a foaf:Organization;
     foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
     foaf:name "Knowledge Media Institute, The Open University";
     foaf:homepage <http://www.open.ac.uk> .
@@ -188,7 +187,7 @@ usdl:BusinessRole a rdfs:Class, owl:Class;
 	rdfs:subClassOf usdl:Role;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "Business Role"@en ;
-    rdfs:comment "<p>The BusinessRoles that an entity may play within a service delivery chain (e.g., Provider). One may define as many roles as necessary by defining subclasses of usdl:BusinessRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Business Roles Modules.</p>"@en .
+    rdfs:comment "<p>The BusinessRoles that an entity may play within a service delivery chain (e.g., Provider). One may define as many roles as necessary by defining subclasses of usdl:BusinessRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Business Roles Module.</p>"@en .
 
 usdl:hasBusinessRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -196,6 +195,12 @@ usdl:hasBusinessRole a rdf:Property;
     rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular InvolvedEntity. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
     rdfs:domain usdl:InvolvedEntity;
     rdfs:range usdl:BusinessRole.
+	
+usdl:InteractionRole a rdfs:Class, owl:Class;
+	rdfs:subClassOf usdl:Role;
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Interaction Role"@en ;
+    rdfs:comment "<p>The InteractionRoles that an entity may play within a service delivery chain (e.g., Initiator). One may define as many roles as necessary by defining subclasses of usdl:InteractionRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Roles Module.</p>"@en .
 
 usdl:hasInteractionRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;

@@ -1,0 +1,299 @@
+@base <http://rdfs.genssiz.org/SurgarCRM> .
+@prefix : <http://rdfs.genssiz.org/SurgarCRM#> .
+@prefix crm: <http://rdfs.genssiz.org/Vocabulary_CRM_001#> .
+
+@prefix usdl: <http://www.linked-usdl.org/ns/usdl-core#> .
+@prefix usdl-br: <http://linked-usdl.org/ns/usdl-business-roles#> .
+@prefix usdl-it: <http://linked-usdl.org/ns/usdl-interaction-types#> .
+@prefix usdl-ir: <http://linked-usdl.org/ns/usdl-interaction-roles#> .
+@prefix legal: <http://www.linked-usdl.org/ns/usdl-legal#> .
+@prefix price: <http://www.linked-usdl.org/ns/usdl-pricing#> .
+@prefix sla: <http://www.linked-usdl.org/ns/usdl-sla#> .
+
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dctypes: <http://purl.org/dc/dcmitype/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix blueprint: <http://bizweb.sap.com/TR/blueprint#> .
+@prefix ctag: <http://commontag.org/ns#> .
+@prefix msm: <http://cms-wg.sti2.org/ns/minimal-service-model#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix sawsdl: <http://www.w3.org/ns/sawsdl#> .
+@prefix sarest: <http://www.knoesis.org/research/srl/standards/sa-rest/#> .
+@prefix wl: <http://www.wsmo.org/ns/wsmo-lite#> .
+@prefix http: <http://www.w3.org/2011/http#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix language: <http://www.lingvoj.org/lang/> .
+@prefix nco: <http://www.semanticdesktop.org/ontologies/2007/03/22/nco#> .
+
+<>  a owl:Ontology;
+	rdfs:label "SurgarCRM description" ;
+	dcterms:title "SurgarCRM description" ;
+	dcterms:description "Description of SurgarCRM (www.sugarcrm.com) cloud-based system to show the integration USDL-TOSCA." ;
+	dcterms:created "2012-08-14"^^xsd:date ;
+	dcterms:modified "2013-07-25"^^xsd:date ;
+	owl:versionInfo "003" .
+
+# Sugar Professional, Sugar Corporate, Sugar Enterprise, Sugar Ultimate, SugarExchange			
+
+#************************************************************************************
+#	SugarCRM Inc. Company data											
+#************************************************************************************
+
+:bentity_SugarCRM_Inc a gr:BusinessEntity ;
+	foaf:homepage <http://www.sugarcrm.com/> ;
+	foaf:logo <http://d2owqhhe2x3j50.cloudfront.net/crm/images/content_images/poweredby_sugarcrm.gif> ;
+
+	gr:hasISICv4 "620"^^xsd:string ;
+	gr:hasNAICS "511210"^^xsd:string ;
+	gr:legalName "SugarCRM Inc."^^xsd:string ;
+	gr:taxID "77123/12345"^^xsd:string ;	
+
+	vcard:adr 
+		[ a vcard:Work ;
+			vcard:country-name "U.S."@en ] .
+
+			
+#************************************************************************************
+#	usdl:ServiceModel -- model_SugarCRM 										
+#************************************************************************************
+
+:model_SugarCRM a usdl:ServiceModel ;
+	dcterms:title "SugarCRM Model for Software"@en .
+
+	
+#************************************************************************************
+#	usdl:ServiceOffering -- offering_SugarCRM   	
+#************************************************************************************
+
+:offering_SugarCRM a usdl:ServiceOffering ;
+	dcterms:title "SugarCRM Offering"@en ;
+	dcterms:description "Offering for a SugarCRM instance."@en ;
+#	usdl:validFrom "2012-09-01"^^xsd:date;
+#	usdl:validThrough "2013-08-31"^^xsd:date;
+
+    foaf:page <http://www.sugarcrm.com/products> ; 			
+
+    gr:name "SugarCRM Systems";
+    gr:description """SugarCRM is a CRM systems provided as a SaaS solutions.""";	
+	
+#   usdl:price <#price_SugarCRM>
+#   usdl:legal <#legal_SugarCRM>
+
+	usdl:includes <#service_SugarCRM> .
+	
+		
+	
+#************************************************************************************
+#	usdl:Service -- SugarCRM   	
+#************************************************************************************
+
+<#service_SugarCRM> a usdl:Service ;
+	dcterms:title "SugarCRM Service"@en ;
+
+	usdl:hasClassification dbpedia:Software_as_a_service ;
+	usdl:hasServiceModel :model_SugarCRM ;			
+
+	usdl:hasInteractionPoint :ip_Contact_US ;			
+	usdl:hasInteractionPoint :purchase_Orders_by_Status ;			
+
+	
+	usdl:hasInvolvedEntity [
+		a usdl:InvolvedEntity  ;
+		
+		usdl:hasBusinessEntity :bentity_SugarCRM_Inc ;	
+		usdl:hasBusinessRole usdl-br:provider ;
+		usdl:hasEntityType usdl-br:consumer ;
+	] .	
+	
+
+#************************************************************************************
+#	usdl:InteractionPoint :abc -- SugarCRM   	
+#************************************************************************************
+
+:purchase_Orders_by_Status a usdl:InteractionPoint ;
+	dcterms:title "Inventory Management"@en ;
+	dcterms:description "Inventory Management: Purchase Orders by Status."@en ;
+
+	usdl:hasInteractingEntity [
+		a usdl:InteractingEntity ;
+		usdl:hasEntityType usdl-br:provider ;
+		usdl:hasEntityType usdl-br:producer ;
+		usdl:hasInteractionRole usdl-ir:participant ;
+	] ;
+	
+	usdl:hasInteractingEntity [
+		a usdl:InteractingEntity ;
+		usdl:hasEntityType usdl-br:consumer ;
+		usdl:hasInteractionRole usdl-ir:initiator ;
+		usdl:hasInteractionRole usdl-ir:receiver;
+		usdl:hasInteractionRole usdl-ir:participant;
+	] ;	
+	
+	usdl:receives [
+		a rdfs:Resource ;
+		rdfs:comment "Status"@en ;
+		rdf:type dbpedia:Process_states ;
+	] ;
+	
+	usdl:yields [
+		a rdfs:Resource ;
+		rdfs:comment "Purchase Orders"@en ;
+		rdf:type dbpedia:Purchase_order ;
+	] ;
+	
+	usdl:hasContactMedium [
+		a nco:EmailAddress ;
+		nco:emailAddress "sales@sugarcrm.com" ;
+		nco:contactMediumComment "User Interface" ;
+		
+		usdl:hasInteractionType usdl-it:human-to-machine ;
+		usdl:hasInteractionType usdl-it:remote ;
+	] ;	
+
+	# msm:Operation rdfs:subClassOf nco:ContactMedium.
+	
+	
+#************************************************************************************
+#	usdl:InteractionPoint :ip_Contact_US -- SugarCRM   	
+#************************************************************************************
+
+:ip_Contact_US a usdl:InteractionPoint ;
+	dcterms:title "SugarCRM Contact US"@en ;
+	dcterms:description "How to contact SugarCRM offices."@en ;
+
+	usdl:hasContactMedium [
+		a nco:PhoneNumber  ;
+		nco:hasPhoneNumber "+1 877.842.7276" ;
+		nco:contactMediumComment "Global number" ;
+		
+		usdl:hasInteractionType usdl-it:manual ;
+		usdl:hasInteractionType usdl-it:remote ;
+	] ;
+
+	usdl:hasContactMedium [
+		a nco:PhoneNumber  ;
+		nco:hasPhoneNumber "+1.408.454.6940" ;
+		nco:contactMediumComment "Sales" ;
+		
+		usdl:hasInteractionType usdl-it:manual ;
+		usdl:hasInteractionType usdl-it:remote ;
+	] ;	
+	
+	usdl:hasContactMedium [
+		a nco:PostalAddress ;
+ 		nco:country "USA" ;
+		nco:region "California" ;
+		nco:locality "Cupertino" ;
+		nco:postalcode "CA 95014" ;
+		nco:streetAddress "10050 North Wolfe Road, SW2-130" ;
+		
+		usdl:hasInteractionType usdl-it:manual ;
+		usdl:hasInteractionType usdl-it:remote ;
+	] ;
+
+	usdl:hasContactMedium [
+		a nco:EmailAddress ;
+		nco:emailAddress "sales@sugarcrm.com " ;
+		nco:contactMediumComment "Sales North America" ;
+		
+		usdl:hasInteractionType usdl-it:manual ;
+		usdl:hasInteractionType usdl-it:remote ;
+	] ;
+	
+	usdl:hasInteractingEntity [
+		a usdl:InteractingEntity ;
+		usdl:hasEntityType usdl-br:provider ;
+		usdl:hasInteractionRole usdl-br:participant ;
+	] ;
+	
+	usdl:receives [
+		a rdfs:Resource ;
+		rdfs:comment "First name, last name, email, phone, company, title, and number of employees"@en ;
+	] ;
+	
+	usdl:yields [
+		a rdfs:Resource ;
+		rdfs:comment "Answers to questions related to SugarCRM sofwtare products"@en ;
+	] ;
+	
+	
+#************************************************************************************
+#	Legal												
+#************************************************************************************
+
+:legal_SugarCRM a legal:TermsAndConditions ;
+	dcterms:title "SugarCRM legal statements"@en ;
+	dcterms:description "SugarCRM legal statements are accessible at 'http://www.sugarcrm.com/'. Please consult this website for further information"@en ;
+	legal:hasClause 
+		[ a legal:Clause ;
+			legal:name "Public License" ;
+			legal:text "http://www.sugarcrm.com/page/sugarcrm-public-license/en"@en ] ,
+		[ a legal:Clause ;
+			legal:name "Trademark Information" ;
+			legal:text "http://www.sugarcrm.com/about/trademark-information"@en ] ,
+		[ a legal:Clause ;
+			legal:name "Privacy Policy" ;
+			legal:text "http://www.sugarcrm.com/about/sugarcrm-inc-privacy-policy"@en ] ,
+		[ a legal:Clause ;
+			legal:name "Master Subscription Agreement" ;
+			legal:text "http://www.sugarcrm.com/master-subscription-agreement"@en ] ,
+		[ a legal:Clause ;
+			legal:name "On-line Terms of Use" ;
+			legal:text "http://www.sugarcrm.com/page/sugarcrm-line-terms-use/en"@en ] .
+
+	
+	
+#************************************************************************************
+#	Customizing															
+#************************************************************************************
+
+:SugarCRM_Edition a rdfs:Class , skos:Concept ;
+	rdfs:subClassOf gr:QualitativeValue ;
+	skos:prefLabel "SurgarCRM Software Packages Editions" ;
+	skos:editorialNote "SurgarCRM declares their editions as qualitative measure in the categories: Professional, Coporate, Enterprise and Ultimate." ;
+	skos:narrower 
+		:SugarCRM_Professional ,
+		:SugarCRM_Corporate ,
+		:SugarCRM_Enterprise ,
+		:SugarCRM_Ultimate .
+
+
+:SugarCRM_Professional a rdfs:Class , skos:Concept ;
+	rdfs:subClassOf gr:QualitativeValue ;
+	skos:prefLabel "SurgarCRM Software Packages Edition Corporate" ;
+	skos:broader :SugarCRM_Edition ;
+	skos:narrower :SugarCRM_Corporate .
+
+:SugarCRM_Corporate a rdfs:Class , skos:Concept ;
+	rdfs:subClassOf gr:QualitativeValue ;
+	skos:prefLabel "SurgarCRM Software Packages Edition Enterprise" ;
+	skos:broader 
+		:SugarCRM_Edition ,
+		:SugarCRM_Professional ;
+	skos:narrower :SugarCRM_Enterprise .
+
+:SugarCRM_Enterprise a rdfs:Class , skos:Concept ;
+	rdfs:subClassOf gr:QualitativeValue ;
+	skos:prefLabel "SurgarCRM Software Packages Edition Ultimate" ;
+	skos:broader 
+		:SugarCRM_Edition ,
+		:SugarCRM_Corporate ;
+	skos:narrower :SugarCRM_Ultimate .
+
+:SugarCRM_Ultimate a rdfs:Class , skos:Concept ;
+	rdfs:subClassOf gr:QualitativeValue ;
+	skos:prefLabel "SurgarCRM Software Packages Edition Enterprise" ;
+	skos:broader 
+		:SugarCRM_Edition ,
+		:SugarCRM_Enterprise .
+

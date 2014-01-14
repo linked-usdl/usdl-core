@@ -1,6 +1,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -10,24 +10,24 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
-@prefix nco: <http://www.semanticdesktop.org/ontologies/2007/03/22/nco#> .
+@prefix vcard: <http://www.w3.org/TR/vcard-rdf/> .
 
 <http://linked-usdl.org/ns/usdl> a owl:Ontology;
-	dc:created "2012-09-20"^^xsd:date ;
-	dc:issued "2012-09-20"^^xsd:date ;
+	dcterms:created "2012-09-20"^^xsd:date ;
+	dcterms:issued "2012-09-20"^^xsd:date ;
 	rdfs:label "Linked USDL Core"@en ;
-    dc:title "Linked USDL Core"@en ;
-    dc:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
+    dcterms:title "Linked USDL Core"@en ;
+    dcterms:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
 <p>This first draft includes most of the original USDL specification with some useful simplifications. </p>"""@en ;
-    dc:modified "2012-09-20"^^xsd:date, "2013-03-06"^^xsd:date, "2013-03-07"^^xsd:date, "2013-03-08"^^xsd:date, "2013-08-29"^^xsd:date;
+    dcterms:modified "2012-09-20"^^xsd:date, "2013-03-06"^^xsd:date, "2013-03-07"^^xsd:date, "2013-03-08"^^xsd:date, "2013-08-29"^^xsd:date, "2013-12-10"^^xsd:date;
     vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl#";
     vann:preferredNamespacePrefix "usdl";
     foaf:page <http://linked-usdl.org/ns/usdl.html>;
-    dc:creator
+    dcterms:creator
         <http://linked-usdl.org/ns/usdl#cpedrinaci>,
         <http://linked-usdl.org/ns/usdl#jcardoso>,
         <http://linked-usdl.org/ns/usdl#tleidig> ;
-	owl:versionInfo "0.9" .
+	owl:versionInfo "1.0" .
 
 <http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
     foaf:name "Carlos Pedrinaci";
@@ -45,7 +45,7 @@
 <http://linked-usdl.org/ns/usdl#KMi> a foaf:Organization;
     foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
     foaf:name "Knowledge Media Institute, The Open University";
-    foaf:homepage <http://www.open.ac.uk> .
+    foaf:homepage <http://kmi.open.ac.uk> .
 
 <http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
     foaf:name "Torsten Leidig".
@@ -75,28 +75,28 @@ usdl:ServiceModel a rdfs:Class, owl:Class;
         usdl:Service,
         gr:ProductOrServiceModel .
 
-usdl:hasServiceModel a rdf:Property;
+usdl:ServiceIndividual a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has service model"@en ;
-    rdfs:comment "<p>Refers to the ServiceModel that specifies properties valid for all Services of this model.</p>"@en ;
-    rdfs:domain usdl:Service;
-    rdfs:range usdl:ServiceModel;
-    rdfs:subPropertyOf gr:hasMakeAndModel .
+    rdfs:label "Service Individual"@en ;
+    rdfs:comment "<p>Instances of ServiceIndividual are actual services that are creating value to a network of business entities. For instance, your concrete life insurance provided by AXA is a ServiceIndividual which is providing value to yourself and AXA.</p>"@en ;
+    rdfs:subClassOf
+        usdl:Service,
+        gr:Individual .
 
 usdl:hasClassification a rdf:Property;
-    rdfs:subPropertyOf dc:subject;
+    rdfs:subPropertyOf dcterms:subject;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has classification"@en ;
     rdfs:comment "<p>Indicates a classification of a Service.</p>"@en ;
     rdfs:domain usdl:Service;
     rdfs:range skos:Concept.
 
-usdl:hasContactMedium a rdf:Property;
+usdl:hasCommunicationChannel a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has contact medium"@en ;
-    rdfs:comment """<p>InteractionPoints can have several ContactMedia, i.e., ways for interacting like the phone, email, etc. </p>"""@en ;
+    rdfs:label "has communication channel"@en ;
+    rdfs:comment """<p>InteractionPoints can have several CommunicationChannels, i.e., ways for interacting like the phone, email, etc. </p>"""@en ;
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range nco:ContactMedium .
+    rdfs:range usdl:CommunicationChannel .
 
 usdl:receives a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
@@ -129,6 +129,12 @@ On a professional level, it could mean that consumer and provider meet in person
 An InteractionPoint can be initiated by the consumer or the provider. Since InteractionPoints may take time and have an ordering with respect to other InteractionPoints, this is a subclass of TimeSpanningEntity.
 One can therefore express temporal relationships between InteractionPoints such as before or after. For richer expressions the time ontology constructs could be used.</p>"""@en  .
 
+usdl:CommunicationChannel a rdfs:Class, owl:Class;
+	owl:unionOf (msm:Operation vcard:Address vcard:Email vcard:TelephoneType);
+    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
+    rdfs:label "Communication Channel"@en ;
+    rdfs:comment """<p>CommunicationChannel is the class of all different communication channels that business entities could use for communication, e.g., email, phone, etc.</p>"""@en  .
+
 usdl:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction"@en ;
@@ -147,7 +153,7 @@ usdl:hasInteractionType a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has interaction type"@en ;
     rdfs:comment "<p>The hasInteractionType relationship captures the modes of interaction for a given InteractionPoint through a particular ContactMedium.</p>"@en ;
-    rdfs:domain nco:ContactMedium;
+    rdfs:domain usdl:CommunicationChannel;
     rdfs:range usdl:InteractionType.
 
 usdl:InteractionType rdfs:subClassOf skos:Concept;
@@ -155,35 +161,35 @@ usdl:InteractionType rdfs:subClassOf skos:Concept;
 	rdfs:label "Interaction Type"@en ;
 	rdfs:comment "<p>This concept covers the kinds of interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of usdl:InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
 
-usdl:hasInteractingEntity a rdf:Property;
+usdl:hasEntityInteraction a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has interacting entity"@en ;
+    rdfs:label "has entity interaction"@en ;
     rdfs:comment "<p>Captures the involvement of BusinessEntities within a particular Interaction.</p>"@en ;
     rdfs:domain usdl:InteractionPoint;
-    rdfs:range usdl:InteractingEntity.
+    rdfs:range usdl:EntityInteraction.
 
-usdl:InteractingEntity a rdfs:Class, owl:Class;
+usdl:EntityInteraction a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Interacting Entity"@en ;
-    rdfs:comment "<p>InteractingEntity helps captures a ternary relationship between InteractionPoints the types of BusinessEntities involved (based on their role e.g., provider or consumer) and the actual InteractionRole (e.g., initiator or receiver) of that BusinessEntity within a particular InteractionPoint. This enables specifying for instance the fact that an insurance claim should be initiated by the consumer through an interaction with the insurance provider.</p>"@en .
+    rdfs:label "Entity Interaction"@en ;
+    rdfs:comment "<p>EntityInteraction helps captures a ternary relationship between InteractionPoints the types of BusinessEntities involved (based on their role e.g., provider or consumer) and the actual InteractionRole (e.g., initiator or receiver) of that BusinessEntity within a particular InteractionPoint. This enables specifying for instance the fact that an insurance claim should be initiated by the consumer through an interaction with the insurance provider.</p>"@en .
 
-usdl:InvolvedEntity a rdfs:Class, owl:Class;
+usdl:EntityInvolvement a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "Involved Entity"@en ;
-    rdfs:comment "<p>InvolvedEntity helps captures a ternary relationship between Services (or ServiceModels) the BusinessEntities involved in the service process and the Role they play, e.g., provider, intermediary, etc. This enables specifying, for instance the fact that a given insurance service is provided by a certain company, or that a third party is actually involved in the service delivery chain.</p>"@en .
+    rdfs:label "Entity Involvement"@en ;
+    rdfs:comment "<p>EntityInvolvement helps captures a ternary relationship between Services, the BusinessEntities involved in the service process, and the Role they play, e.g., provider, intermediary, etc. This enables specifying, for instance the fact that a given insurance service is provided by a certain company, or that a third party is actually involved in the service delivery chain.</p>"@en .
 
-usdl:hasInvolvedEntity a rdf:Property;
+usdl:hasEntityInvolvement a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has involved entity"@en ;
-    rdfs:comment "<p>Captures the involvements of BusinessEntities within a given Service or Service Model. By means of InvolvedEntity we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
-    rdfs:domain [a owl:Class; owl:unionOf (usdl:Service usdl:ServiceModel)];
-    rdfs:range usdl:InvolvedEntity.
+    rdfs:label "has entity involvement"@en ;
+    rdfs:comment "<p>Captures the involvements of BusinessEntities within a given Service. By means of EntityInvolvement we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
+    rdfs:domain usdl:Service;
+    rdfs:range usdl:EntityInvolvement.
 
-usdl:hasBusinessEntity a rdf:Property;
+usdl:ofBusinessEntity a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has business entity"@en ;
-    rdfs:comment "<p>Captures the BusinessEntity involved in a particular InvolvedEntity. For instance the entity involved could be SAP, IBM, Siemens, etc.</p>"@en ;
-    rdfs:domain usdl:InvolvedEntity;
+    rdfs:label "of business entity"@en ;
+    rdfs:comment "<p>Captures the BusinessEntity involved in a particular EntityInvolvement or EntityInteraction. For instance the entity involved could be SAP, IBM, Siemens, etc.</p>"@en ;
+    rdfs:domain [a owl:Class; owl:unionOf (usdl:EntityInvolvement usdl:EntityInteraction)];
     rdfs:range gr:BusinessEntity.
 
 usdl:Role a rdfs:Class, owl:Class;
@@ -198,11 +204,11 @@ usdl:BusinessRole a rdfs:Class, owl:Class;
     rdfs:label "Business Role"@en ;
     rdfs:comment "<p>The BusinessRoles that an entity may play within a service delivery chain (e.g., Provider). One may define as many roles as necessary by defining subclasses of usdl:BusinessRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Business Roles Module.</p>"@en .
 
-usdl:hasBusinessRole a rdf:Property;
+usdl:withBusinessRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has business role"@en ;
-    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular InvolvedEntity. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
-    rdfs:domain usdl:InvolvedEntity;
+    rdfs:label "with business role"@en ;
+    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular EntityInvolvement or EntityInteraction. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
+    rdfs:domain [a owl:Class; owl:unionOf (usdl:EntityInvolvement usdl:EntityInteraction)];
     rdfs:range usdl:BusinessRole.
 	
 usdl:InteractionRole a rdfs:Class, owl:Class;
@@ -211,21 +217,15 @@ usdl:InteractionRole a rdfs:Class, owl:Class;
     rdfs:label "Interaction Role"@en ;
     rdfs:comment "<p>The InteractionRoles that an entity may play within a service delivery chain (e.g., Initiator). One may define as many roles as necessary by defining subclasses of usdl:InteractionRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Roles Module.</p>"@en .
 
-usdl:hasInteractionRole a rdf:Property;
+usdl:withInteractionRole a rdf:Property;
     rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
     rdfs:label "has business role"@en ;
     rdfs:comment "<p>Captures the InteractionRole played by a BusinessEntity type in a particular InteractionPoint (e.g., Initiator, etc).</p>"@en ;
-    rdfs:domain usdl:InteractingEntity;
+    rdfs:domain usdl:EntityInteraction;
     rdfs:range usdl:InteractionRole.
 
-usdl:hasEntityType a rdf:Property;
-    rdfs:isDefinedBy <http://linked-usdl.org/ns/usdl>;
-    rdfs:label "has entity type"@en ;
-    rdfs:comment "<p>Captures the EntityType, i.e., an entity playing a certain BusinessRole, like service Provider, that is involved in a particular InteractionPoint. This allows expressing things like: for using your repair service you should contact the reseller of your product.</p>"@en ;
-	rdfs:domain usdl:InteractingEntity;
-	rdfs:range usdl:InteractionRole.
 
-# Integrate MSM and add support for Web Service operations as a Contact Medium
-msm:Operation rdfs:subClassOf nco:ContactMedium.
+# Integrate vCard
+gr:BusinessEntity rdfs:subClassOf vcard:Kind.
 
 

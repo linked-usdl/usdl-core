@@ -11,8 +11,8 @@ Linked USDL Core is the foundation module of Linked USDL and covers four essenti
 - Interaction points allowing consumers to contract or trigger the benefits of contracted services
 
 Linked USDL Core relies on a number of pre-existing vocabularies, namely:
-– DC Terms to cover general purpose metadata such as the creator of a certain description, its date of creation or modification, etc.
-– SKOS for low-cost support for capturing knowledge organisation systems (e.g., classifications and thesauri) in RDF.
+- DC Terms to cover general purpose metadata such as the creator of a certain description, its date of creation or modification, etc.
+- SKOS for low-cost support for capturing knowledge organisation systems (e.g., classifications and thesauri) in RDF.
 - Time Ontology for covering basic temporal relations between instants and intervals. Time Ontology essentially allows us for instance to capture temporal relationships such as before and during.
 - vCard vocabulary a vCard 4 compatible vocabulary to support providing location and contact information for people and organisations.
 - Minimal Service Model (MSM) to provide coverage for automated service-based interactions including Remote Procedure Call solutions (e.g., WSDL services) and RESTful services.

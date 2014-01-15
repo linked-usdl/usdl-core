@@ -1,125 +1,93 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix usdl: <http://www.linked-usdl.org/ns/usdl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gr: <http://purl.org/goodrelations/v1#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix usdl-core: <http://www.linked-usdl.org/ns/usdl-core#> .
 
-@base <http://linked-usdl.org/ns/usdl-interaction-types#> .
+@base <http://www.linked-usdl.org/ns/usdl-interaction-types#> .
 
-<> a skos:ConceptScheme , owl:Ontology;
-    dc:title "Linked USDL Basic Interaction Types concept scheme";
-    dc:description """<p>This vocabulary provides the core InteractionTypes contemplated within Linked USDL. It therefore covers different categorisations for the Interactions that can occur in an InteractionPoint. The taxonomy provided here is a minimal reference taxonomy focussed on the level of automation and the locality considerations (e.g., on-site vs remote). Extensions or replacements for this could be defined an used within applications in the very same way by refining usdl:InteractionType. </p>"""@en ;
-    dc:modified "2013-02-11"^^xsd:date;
+<http://www.linked-usdl.org/ns/usdl-interaction-types> a skos:ConceptScheme , owl:Ontology;
+    dcterms:title "Linked USDL Basic Interaction Types concept scheme";
+    dcterms:description """<p>This vocabulary provides the core InteractionTypes contemplated within Linked USDL. It therefore covers different categorisations for the Interactions that can occur in an InteractionPoint. The taxonomy provided here is a minimal reference taxonomy focussed on the level of automation and the locality considerations (e.g., on-site vs remote). Extensions or replacements for this could be defined an used within applications in the very same way by refining InteractionType. </p>"""@en ;
+    dcterms:modified "2013-02-11"^^xsd:date, "2014-01-14"^^xsd:date ;
     vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-interaction-types#";
     vann:preferredNamespacePrefix "usdl-it";
-    foaf:page <http://linked-usdl.org/ns/usdl-interaction-types.html>;
-    dc:creator
-        <http://linked-usdl.org/ns/usdl#cpedrinaci>,
-        <http://linked-usdl.org/ns/usdl#jcardoso>,
-        <http://linked-usdl.org/ns/usdl#tleidig> ;
+    foaf:page <http://www.linked-usdl.org/ns/usdl-interaction-types.html>;
+    dcterms:creator usdl-core:cpedrinaci, usdl-core:jcardoso, usdl-core:tleidig ;
 	skos:prefLabel "Interaction Types"@en ;
 	skos:hasTopConcept <manual>, <automated>, <semi-automated>, <remote>, <on-site>.
 
-<http://linked-usdl.org/ns/usdl#cpedrinaci> a foaf:Person;
-    foaf:name "Carlos Pedrinaci";
-    foaf:homepage <http://www.cpedrinaci.net> .
-
-<http://linked-usdl.org/ns/usdl#jcardoso> a foaf:Person;
-    foaf:name "Jorge Cardoso";
-    foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
-
-<http://linked-usdl.org/ns/usdl#CISUC%2C%20University%20of%20Coimbra> a foaf:Organization;
-    foaf:member <http://linked-usdl.org/ns/usdl#jcardoso>;
-    foaf:name "CISUC/DEI, University of Coimbra";
-    foaf:homepage <http://www.dei.uc.pt> .
-
-<http://linked-usdl.org/ns/usdl#Knowledge%20Media%20Institute%2C%20The%20Open%20University> a foaf:Organization;
-    foaf:member <http://linked-usdl.org/ns/usdl#cpedrinaci>;
-    foaf:name "Knowledge Media Institute, The Open University";
-    foaf:homepage <http://www.open.ac.uk> .
-
-<http://linked-usdl.org/ns/usdl#tleidig> a foaf:Person;
-    foaf:name "Torsten Leidig".
-
-<http://linked-usdl.org/ns/usdl#SAP%20Research%20Center%20CEC%20Karlsruhe%2C%20SAP%20AG> a foaf:Organization;
-    foaf:member <http://linked-usdl.org/ns/usdl#tleidig>;
-    foaf:name "SAP Research Center CEC Karlsruhe, SAP AG";
-    foaf:homepage <http://www.sap.com> .
-
 # Dimensions for classifications contemplated in this module
 <by-automation> a skos:Collection ;
-  skos:prefLabel "<p>Interaction Types by level of Automation"@en ;
-  skos:member <manual> ;
-  skos:member <semi-automated> ;
-  skos:member <automated> .
+	skos:prefLabel "<p>Interaction Types by level of Automation"@en ;
+	skos:member <manual>, <semi-automated>, <automated> .
 
 <by-locality> a skos:Collection ;
-  skos:prefLabel "<p>Interaction Types by locality binding"@en ;
-  skos:member <on-site> ;
-  skos:member <remote> .
-
+  	skos:prefLabel "<p>Interaction Types by locality binding"@en ;
+  	skos:member <on-site>, <remote> .
 
 # Core basic interaction types
 # Categorisations based on the level of automation
-<manual> a usdl:InteractionType;
+<manual> a usdl-core:InteractionType;
     rdfs:label "Manual"@en ;
     skos:prefLabel "Manual"@en ;
     skos:altLabel "Manual Interaction"@en ;
     skos:definition "<p>The interaction between the two parties is entirely manual.</p>"@en ;
-	skos:topConceptOf <>;
-	skos:inScheme <>.
+	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-interaction-types>;
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.
 
-<automated> a usdl:InteractionType;
+<automated> a usdl-core:InteractionType;
     rdfs:label "Automated"@en ;
     skos:prefLabel "Automated"@en ;
     skos:altLabel "Automated Interaction"@en ;
     skos:definition "The interaction between the two parties is entirely automated.</p>"@en ;
-	skos:topConceptOf <>;
-	skos:inScheme <>.
+	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-interaction-types>;
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.
 
-<semi-automated> a usdl:InteractionType;
+<semi-automated> a usdl-core:InteractionType;
     rdfs:label "Semi-Automated"@en ;
     skos:prefLabel "Semi-Automated"@en ;
     skos:altLabel "Semi-Automated Interaction"@en ;
     skos:definition "<p>The interaction between the two parties is semi-automated.</p>"@en ;
-	skos:topConceptOf <>;
+	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-interaction-types>;
 	skos:narrower <human-to-machine> ;
 	skos:narrower <machine-to-human> ;
-	skos:inScheme <>.
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.
 		
-<human-to-machine> a usdl:InteractionType;
+<human-to-machine> a usdl-core:InteractionType;
     rdfs:label "Human to Machine"@en ;
     skos:prefLabel "Human to Machine"@en ;
     skos:altLabel "Human to Machine Interaction"@en ;
     skos:definition "<p>The interaction between the two parties is semi-automated. It is triggered by a human and processed automatically.</p>"@en ;
 	skos:broader <semi-automated> ;
-	skos:inScheme <>.
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.
 			
-<machine-to-human> a usdl:InteractionType;
+<machine-to-human> a usdl-core:InteractionType;
     rdfs:label "Machine to Human"@en ;
     skos:prefLabel "Machine to Human"@en ;
     skos:altLabel "Machine to Human Interaction"@en ;
     skos:definition "<p>The interaction between the two parties is semi-automated. It is triggered by a machine and processed manually.</p>"@en ;
 	skos:broader <semi-automated> ;
-	skos:inScheme <>.
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.
 
 # Categorisations based on the location binding
-<on-site> a usdl:InteractionType;
+<on-site> a usdl-core:InteractionType;
     rdfs:label "On-site"@en ;
     skos:prefLabel "On-site"@en ;
     skos:altLabel "On-site Interaction"@en ;
     skos:definition "<p>The interaction between the two parties requires to take place on-site, e.g., for most hair-dressing services you need to go to their place to cut your hair.</p>"@en ;
-	skos:topConceptOf <>;
-	skos:inScheme <>.	
+	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-interaction-types>;
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.	
 
-<remote> a usdl:InteractionType;
+<remote> a usdl-core:InteractionType;
     rdfs:label "Remote"@en ;
     skos:prefLabel "Remote"@en ;
     skos:altLabel "Remote Interaction"@en ;
     skos:definition "<p>The interaction between the two parties can take place entirely remotely, e.g.,  the travel insurance service is provided entirely remotely independently from any location.</p>"@en ;
-	skos:topConceptOf <>;
-	skos:inScheme <>.							
+	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-interaction-types>;
+	skos:inScheme <http://www.linked-usdl.org/ns/usdl-interaction-types>.							

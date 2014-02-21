@@ -35,7 +35,8 @@ usdl-core:jcardoso a foaf:Person;
     foaf:homepage <http://eden.dei.uc.pt/~jcardoso/> .
 
 usdl-core:tleidig a foaf:Person;
-    foaf:name "Torsten Leidig".
+    foaf:name "Torsten Leidig";
+    foaf:homepage <https://plus.google.com/+TorstenLeidig> .
 
 usdl-core:CISUC a foaf:Organization;
     foaf:member usdl-core:jcardoso;

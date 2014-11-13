@@ -19,12 +19,12 @@
     dcterms:title "Linked USDL Core"@en ;
     dcterms:description """<p>This vocabulary provides the core module of Linked USDL. It therefore covers the main concepts and properties characterising services, leaving more specific aspects regarding some particular dimensions such as technical interfaces, licensing or security aside. These aspects will be covered in additional modules, or &nbsp;in some cases, like the technical interfaces, by existing vocabularies.</p>
 <p>This first draft includes most of the original USDL specification with some useful simplifications. </p>"""@en ;
-    dcterms:modified "2012-09-20"^^xsd:date, "2013-03-06"^^xsd:date, "2013-03-07"^^xsd:date, "2013-03-08"^^xsd:date, "2013-08-29"^^xsd:date, "2013-12-10"^^xsd:date, "2014-01-14"^^xsd:date;
+    dcterms:modified "2012-09-20"^^xsd:date, "2013-03-06"^^xsd:date, "2013-03-07"^^xsd:date, "2013-03-08"^^xsd:date, "2013-08-29"^^xsd:date, "2013-12-10"^^xsd:date, "2014-01-14"^^xsd:date, "2014-11-13"^^xsd:date;
     vann:preferredNamespaceUri "http://www.linked-usdl.org/ns/usdl-core#";
     vann:preferredNamespacePrefix "usdl";
     foaf:page <http://www.linked-usdl.org/ns/usdl-core.html>;
     dcterms:creator usdl-core:cpedrinaci, usdl-core:jcardoso, usdl-core:tleidig ;
-	owl:versionInfo "1.0" .
+	owl:versionInfo "1.1" .
 
 usdl-core:cpedrinaci a foaf:Person;
     foaf:name "Carlos Pedrinaci";
@@ -136,7 +136,7 @@ usdl-core:hasInteractionPoint a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
     rdfs:label "has interaction"@en ;
     rdfs:comment """<p>Interactions that are part of the interaction protocol.</p>"""@en ;
-    rdfs:domain [a owl:Class; owl:unionOf (usdl-core:Service usdl-core:ServiceModel)];
+    rdfs:domain usdl-core:Service;
     rdfs:range usdl-core:InteractionPoint .
 
 usdl-core:spansInterval a rdf:Property;
@@ -157,36 +157,37 @@ usdl-core:InteractionType rdfs:subClassOf skos:Concept;
 	rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
 	rdfs:label "Interaction Type"@en ;
 	rdfs:comment "<p>This concept covers the kinds of interactions that an entity may take place within an InteractionPoint. One may define as many InteractionTypes as necessary by defining subclasses of InteractionType or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for the main interaction types that can be used out of the box or as reference for specific extensions. See Linked USDL Interaction Types Module.</p>"@en .
-
-usdl-core:hasEntityInteraction a rdf:Property;
+	
+usdl-core:hasEntityInvolvement a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has entity interaction"@en ;
-    rdfs:comment "<p>Captures the involvement of BusinessEntities within a particular Interaction.</p>"@en ;
-    rdfs:domain usdl-core:InteractionPoint;
-    rdfs:range usdl-core:EntityInteraction.
-
-usdl-core:EntityInteraction a rdfs:Class, owl:Class;
-    rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
-    rdfs:label "Entity Interaction"@en ;
-    rdfs:comment "<p>EntityInteraction helps captures a ternary relationship between InteractionPoints the types of BusinessEntities involved (based on their role e.g., provider or consumer) and the actual InteractionRole (e.g., initiator or receiver) of that BusinessEntity within a particular InteractionPoint. This enables specifying for instance the fact that an insurance claim should be initiated by the consumer through an interaction with the insurance provider.</p>"@en .
+    rdfs:label "has entity involvement"@en ;
+    rdfs:comment "<p>Captures the involvements of BusinessEntities within a given Service. By means of EntityInvolvement we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
+    rdfs:range usdl-core:EntityInvolvement.
 
 usdl-core:EntityInvolvement a rdfs:Class, owl:Class;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
     rdfs:label "Entity Involvement"@en ;
     rdfs:comment "<p>EntityInvolvement helps captures a ternary relationship between Services, the BusinessEntities involved in the service process, and the Role they play, e.g., provider, intermediary, etc. This enables specifying, for instance the fact that a given insurance service is provided by a certain company, or that a third party is actually involved in the service delivery chain.</p>"@en .
 
-usdl-core:hasEntityInvolvement a rdf:Property;
+usdl-core:EntityInteraction a rdfs:Class, owl:Class;
+	rdfs:subClassOf usdl-core:EntityInvolvement;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has entity involvement"@en ;
-    rdfs:comment "<p>Captures the involvements of BusinessEntities within a given Service. By means of EntityInvolvement we can capture who is the service provider, what other entities are involved, etc.</p>"@en ;
-    rdfs:domain usdl-core:Service;
-    rdfs:range usdl-core:EntityInvolvement.
+    rdfs:label "Entity Interaction"@en ;
+    rdfs:comment "<p>EntityInteraction helps captures a ternary relationship between InteractionPoints the types of BusinessEntities involved (based on their role e.g., provider or consumer) and the actual InteractionRole (e.g., initiator or receiver) of that BusinessEntity within a particular InteractionPoint. This enables specifying for instance the fact that an insurance claim should be initiated by the consumer through an interaction with the insurance provider.</p>"@en .
+
+usdl-core:hasEntityInteraction a rdf:Property;
+    rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
+    rdfs:label "has entity interaction"@en ;
+    rdfs:comment "<p>Captures the involvement of BusinessEntities within a particular Interaction.</p>"@en ;
+	rdfs:subPropertyOf usdl-core:hasEntityInvolvement;
+    rdfs:domain usdl-core:InteractionPoint;
+    rdfs:range usdl-core:EntityInteraction.
 	
 usdl-core:ofBusinessEntity a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
     rdfs:label "of business entity"@en ;
     rdfs:comment "<p>Captures the BusinessEntity involved in a particular EntityInvolvement or EntityInteraction. For instance the entity involved could be SAP, IBM, Siemens, etc.</p>"@en ;
-    rdfs:domain [a owl:Class; owl:unionOf (usdl-core:EntityInvolvement usdl-core:EntityInteraction)];
+    rdfs:domain usdl-core:EntityInvolvement ;
     rdfs:range gr:BusinessEntity.
 
 usdl-core:Role a rdfs:Class, owl:Class;
@@ -201,11 +202,19 @@ usdl-core:BusinessRole a rdfs:Class, owl:Class;
     rdfs:label "Business Role"@en ;
     rdfs:comment "<p>The BusinessRoles that an entity may play within a service delivery chain (e.g., Provider). One may define as many roles as necessary by defining subclasses of BusinessRole or by creating SKOS concept schemes. For completeness Linked USDL Core provides a basic concept scheme for these roles that can be used out of the box or as reference for specific extensions. See Linked USDL Business Roles Module.</p>"@en .
 
+usdl-core:withRole a rdf:Property;
+    rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
+    rdfs:label "with role"@en ;
+    rdfs:comment "<p>Captures the Role played by a BusinessEntity in a particular EntityInvolvement. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
+    rdfs:domain usdl-core:EntityInvolvement ;
+    rdfs:range usdl-core:Role.
+
 usdl-core:withBusinessRole a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
     rdfs:label "with business role"@en ;
-    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular EntityInvolvement or EntityInteraction. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
-    rdfs:domain [a owl:Class; owl:unionOf (usdl-core:EntityInvolvement usdl-core:EntityInteraction)];
+    rdfs:comment "<p>Captures the BusinessRole played by a BusinessEntity in a particular EntityInvolvement. For instance the entity involved could be the actual service Deliverer, etc.</p>"@en ;
+	rdfs:subPropertyOf usdl-core:withRole ;
+    rdfs:domain usdl-core:EntityInvolvement ;
     rdfs:range usdl-core:BusinessRole.
 	
 usdl-core:InteractionRole a rdfs:Class, owl:Class;
@@ -218,6 +227,7 @@ usdl-core:withInteractionRole a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
     rdfs:label "has business role"@en ;
     rdfs:comment "<p>Captures the InteractionRole played by a BusinessEntity type in a particular InteractionPoint (e.g., Initiator, etc).</p>"@en ;
+    rdfs:subPropertyOf usdl-core:withRole ;    
     rdfs:domain usdl-core:EntityInteraction;
     rdfs:range usdl-core:InteractionRole.
 

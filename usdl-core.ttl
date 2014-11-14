@@ -9,7 +9,7 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix msm: <http://iserve.kmi.open.ac.uk/ns/msm#> .
-@prefix vcard: <http://www.w3.org/TR/vcard-rdf/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix usdl-core: <http://www.linked-usdl.org/ns/usdl-core#> .
 
 <http://www.linked-usdl.org/ns/usdl-core> a owl:Ontology;

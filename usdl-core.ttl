@@ -225,7 +225,7 @@ usdl-core:InteractionRole a rdfs:Class, owl:Class;
 
 usdl-core:withInteractionRole a rdf:Property;
     rdfs:isDefinedBy <http://www.linked-usdl.org/ns/usdl-core>;
-    rdfs:label "has business role"@en ;
+    rdfs:label "with interaction role"@en ;
     rdfs:comment "<p>Captures the InteractionRole played by a BusinessEntity type in a particular InteractionPoint (e.g., Initiator, etc).</p>"@en ;
     rdfs:subPropertyOf usdl-core:withRole ;    
     rdfs:domain usdl-core:EntityInteraction;

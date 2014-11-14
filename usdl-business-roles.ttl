@@ -43,7 +43,7 @@
     rdfs:label "Regulator"@en ;
     skos:prefLabel "Regulator"@en ;
     skos:altLabel "Regulation Body"@en ;
-    skos:definition "<p>A Regulator is a third party entity, often governmental, that is in charge of ensuring the adequate application of regulations and best practices. Tracking this information allows one to know the entity one can revolve to in order to deal with concrete problems or simply to have an added garanty that proper control is exercised over a given business activity.</p>"@en ;
+    skos:definition "<p>A Regulator is a third party entity, often governmental, that is in charge of ensuring the adequate application of regulations and best practices. Tracking this information allows one to know the entity one can revolve to in order to deal with concrete problems or simply to have an added guaranty that proper control is exercised over a given business activity.</p>"@en ;
 	skos:topConceptOf <http://www.linked-usdl.org/ns/usdl-business-roles>;
 	skos:inScheme <http://www.linked-usdl.org/ns/usdl-business-roles>.
 
